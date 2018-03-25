@@ -6,6 +6,7 @@
 - The app uses the MapboxAPI , Mapbox GL, along with mapbox Directions API with WebGL <a href="https://www.mapbox.com/api-documentation/#directions">Mapbox API docs</a>
 ## Technologies
 * Backend: Rails 5.1.5
+* Webpacker
 * Frontend: React.js
 * Database: PostgreSQL
 * User Auth: Devise

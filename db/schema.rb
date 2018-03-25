@@ -10,10 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180325011104) do
+ActiveRecord::Schema.define(version: 20180325230633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "rating", default: 1
+    t.integer "route_review_id", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "maps", force: :cascade do |t|
+    t.integer "route_review_id", null: false
+    t.string "name", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "media", force: :cascade do |t|
+    t.integer "route_review_id", null: false
+    t.string "name", null: false
+    t.string "location"
+    t.text "description"
+    t.string "date_taken"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "route_review_categories", force: :cascade do |t|
+    t.integer "category_id", null: false
+    t.integer "route_review_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "route_reviews", force: :cascade do |t|
+    t.integer "route_review_id", null: false
+    t.string "name", null: false
+    t.string "description", null: false
+    t.string "category", null: false
+    t.string "weatherconditions"
+    t.integer "mileage"
+    t.text "points_interest"
+    t.string "start_location"
+    t.string "end_location"
+    t.integer "similar_routes_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,6 +84,10 @@ ActiveRecord::Schema.define(version: 20180325011104) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "location"
+    t.text "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

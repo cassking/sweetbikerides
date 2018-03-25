@@ -1,0 +1,2 @@
+class RouteReviewCategoriesController < ApplicationController
+end
