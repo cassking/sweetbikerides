@@ -1,2 +1,0 @@
-class RouteReviewsController < ApplicationController
-end
