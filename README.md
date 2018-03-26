@@ -17,6 +17,10 @@
 * Install Ruby.2.3.3
 * In a terminal, run git clone `https://github.com/cassking/sweetbikerides.git`
 * Navigate to the project's root directory with `cd sweetbikerides`
-* Run `bundle install && yarn install && npm install && rake db:migrate`
+* Run `bundle install && yarn install && npm install && rake db:create && rake db:migrate && rake db:seed`
 * In a separate terminal windows, run `npm start` && `rails server -- or-- rails s`
 * Visit http://localhost:3000/ in your browser.
+
+[ ![Codeship Status for cassking/sweetbikerides](https://app.codeship.com/projects/ee140d20-131d-0136-a67e-068f11ae90dc/status?branch=master)](https://app.codeship.com/projects/283120)
+[![Code Climate](https://codeclimate.com/github/cassking/sweetbikerides/badges/gpa.svg)](https://codeclimate.com/github/cassking/sweetbikerides)
+[![Coverage Status](https://coveralls.io/repos/github/cassking/sweetbikerides/badge.svg?branch=master)](https://coveralls.io/github/cassking/sweetbikerides?branch=master)
