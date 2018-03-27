@@ -1,9 +1,7 @@
-
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from '../App'
-import MapBox from '../components/MapBox'
+import MapContainer from '../containers/MapContainer'
 
 
 document.addEventListener('DOMContentLoaded', () => {

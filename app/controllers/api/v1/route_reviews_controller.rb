@@ -1,9 +1,7 @@
 class Api::V1::RouteReviewsController < ApplicationController
   def index
     @route_reviews = RouteReview.all
-    @geojson = Array.new
-    build_geojson(route_review, @geojson)
-      render json: route_reviews
+    render json: route_reviews
   end
 
   private
@@ -20,7 +18,10 @@ class Api::V1::RouteReviewsController < ApplicationController
       :points_interest,
       :start_location,
       :end_location,
-      :coordinates
+      :map_start_latitude,
+      :map_start_longitude,
+      :map_end_latitude,
+      :map_end_longitude
     )
   end
 end

@@ -1,6 +1,5 @@
 class RouteReview < ApplicationRecord
   belongs_to :user
-  has_one :map
   has_many :route_review_categories
   has_many :categories, through: :route_review_categories
   has_many :media
