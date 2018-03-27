@@ -1,13 +1,23 @@
 {
   "name": "sweetbikerides",
+  "version": "1.0.0",
+  "description": "Bike Ride Route Reviews using mapbox-gl",
   "private": true,
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.0.5",
     "@rails/webpacker": "~3.3.0",
+    "@react-mapboxgl/core": "^2.1.3",
     "babel-preset-react": "~6.24.1",
+    "lodash": "^4.17.5",
+    "mapbox-gl": "^0.44.1",
     "npm": "^5.8.0",
-    "prop-types": "~15.6.0",
-    "react": "~15.4.2",
-    "react-dom": "~15.4.2"
+    "prop-types": "^15.6.1",
+    "react": "^15.4.2",
+    "react-dom": "~15.4.2",
+    "react-mapbox-gl": "^3.8.0",
+    "react-router": "~3.2.0",
+    "react-scripts": "1.1.1",
+    "sinon": "^4.4.6"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.11.1",
@@ -24,6 +34,7 @@
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "2.0.1",
     "phantomjs-prebuilt": "~2.1.14",
+    "whatwg-fetch": "^2.0.3",
     "react-addons-test-utils": "~15.6.2"
   },
   "scripts": {

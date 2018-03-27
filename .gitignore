@@ -14,7 +14,7 @@
 !/tmp/.keep
 /coverage
 .env
-
+/config/environments/development.rb
 /node_modules
 /yarn-error.log
 

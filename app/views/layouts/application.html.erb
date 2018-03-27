@@ -4,18 +4,28 @@
   <title>Sweetbikerides</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  
+
     <%= javascript_include_tag "vendor/modernizr" %>
-  
+    <%= javascript_pack_tag    'application' %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
-  
+
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
         <h1><a href="/">Sweetbikerides</a></h1>
       </li>
+      <li>
+        <a href="#">One</a>
+        <ul class="menu vertical">
+          <li><a href="#">One</a></li>
+          <li><a href="#">Two</a></li>
+          <li><a href="#">Three</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Two</a></li>
     </ul>
 
     <section class="top-bar-section">

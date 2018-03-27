@@ -1,3 +1,4 @@
 class Category < ApplicationRecord
-  belongs_to :route_review
+  has_many :route_review_categories
+  has_many :route_reviews, through: :route_review_categories
 end

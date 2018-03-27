@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180326150730) do
+ActiveRecord::Schema.define(version: 20180327000239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20180326150730) do
   end
 
   create_table "route_reviews", force: :cascade do |t|
-    t.integer "route_review_id", null: false
+    t.integer "user_id", null: false
     t.string "name", null: false
     t.string "description", null: false
     t.string "category", null: false
@@ -66,9 +66,9 @@ ActiveRecord::Schema.define(version: 20180326150730) do
     t.text "points_interest"
     t.string "start_location"
     t.string "end_location"
-    t.integer "similar_routes_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "coordinates", default: [], array: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(version: 20180326150730) do
     t.string "location"
     t.text "bio"
     t.string "username"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.integer "failed_attempts", default: 0, null: false
+    t.datetime "locked_at"
+    t.string "unlock_token"
+    t.boolean "admin", default: false
+    t.string "role", default: "member", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
