@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
+import { Route, IndexRoute, Router, browserHistory, Link } from 'react-router'
 import ReactMapboxGl, { Layer, Feature, ZoomControl } from "react-mapbox-gl";
 import { geoData } from '../Constants';
 import DropdownMenu from 'react-dd-menu';
@@ -24,7 +24,7 @@ class IndexContainer extends Component {
       console.log(response)
       let parsed = response.json()
       return parsed
-    }).then(players => {
+    }).then(route_reviews => {
       this.setState({
         allRouteReviews: route_reviews
       })
@@ -40,8 +40,13 @@ class IndexContainer extends Component {
 
   render() {
     const { allRouteReviews, currentPage, r_reviewsPerPage } = this.state;
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(allRouteReviews.length / r_reviewsPerPage); i++) {
+      pageNumbers.push(i);
+    }
     const r_reviews = allRouteReviews.map((rr, index) => {
       return(
+        <div>
         <RouteReviewTile
           key={rr.id}
           id={rr.id}
@@ -58,28 +63,40 @@ class IndexContainer extends Component {
           map_start_longitude={rr.map_start_longitude}
           map_end_latitude={rr.map_end_latitude}
           map_end_longitude={rr.map_end_longitude}
-        />
-      )
+        /></div>);
     });
 
     // Logic for displaying page numbers
-    const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(allRouteReviews.length / r_reviewsPerPage); i++) {
-      pageNumbers.push(i);
-    }
+
 
     const renderPageNumbers = pageNumbers.map(number => {
       return (
-        <li
+        <button
           className="button"
           key={number}
           id={number}
           onClick={this.handleClick}
         >
           {number}
-        </li>
+        </button>
       );
     });
+
+    return(
+      <div className="main-wrapper">
+      <div className="route-reviews-wrapper">
+        <Link to={'/mapcontainer'}>Peek at example map here</Link>
+
+        <ul>
+          {r_reviews}
+        </ul>
+        <ul id="page-numbers">
+          {renderPageNumbers}
+        </ul>
+      </div>
+      </div>
+
+    )
 
   }
 
