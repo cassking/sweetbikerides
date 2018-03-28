@@ -1,7 +1,7 @@
 class Api::V1::RouteReviewsController < ApplicationController
   def index
     @route_reviews = RouteReview.all
-    render json: route_reviews
+    render json: @route_reviews
   end
 
   private

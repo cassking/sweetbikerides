@@ -29,10 +29,10 @@ admin = User.create!(username: "admin1", email: "admin1@gmail.com", password: "p
 rr1 = RouteReview.create!(user_id:User.last.id, name: "Widow's Peak to Gravel Fountain",
 description: "This is a wonderful route, full of long hard climbs and fun
 descents. It ends at Gravel Fountain", category: Category.first.id,
-coordinates: [ -101.552124,39.330048 ])
+map_start_latitude: -99.865722, map_start_longitude:39.00211, map_end_latitude:-99.684448, map_end_longitude:  38.972221)
 rr2 = RouteReview.create!(user_id:User.last.id, name: "The Devils peak ride",
 description: "This is a hard grinder, 90 miles of gravel and hills", category:  Category.last.id,
-coordinates: [  -101.744384,39.32155 ])
+map_start_latitude: -101.744384, map_start_longitude:39.32155, map_end_latitude:-101.552124, map_end_longitude: 39.330048)
 c1= Comment.create!(user_id:User.first.id, route_review_id:RouteReview.last.id, body:"thanks for posting this, it was intese and fun")
 c2= Comment.create!(user_id:User.last.id, route_review_id:RouteReview.first.id, body:"I will be riding this in two weeks")
 rrc1= RouteReviewCategory.create!(category_id: cat1.id, route_review_id:rr1.id)

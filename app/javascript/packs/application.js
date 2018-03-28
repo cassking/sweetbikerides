@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from '../App'
-import MapContainer from '../containers/MapContainer'
-
 
 document.addEventListener('DOMContentLoaded', () => {
   let reactElement = document.getElementById('map')

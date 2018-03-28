@@ -1,7 +1,7 @@
 class Api::V1::MediaController < ApplicationController
   def index
     @media = Medium.all
-    render json: media
+    render json: @media
   end
 
   private
