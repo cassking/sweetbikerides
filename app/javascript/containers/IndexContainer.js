@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, IndexRoute, Router, browserHistory, Link } from 'react-router'
+import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 'react-router'
 import ReactMapboxGl, { Layer, Feature, ZoomControl } from "react-mapbox-gl";
 import { geoData } from '../Constants';
 import DropdownMenu from 'react-dd-menu';
@@ -48,21 +48,14 @@ class IndexContainer extends Component {
       return(
         <div>
         <RouteReviewTile
-          key={rr.id}
+          key={rr.name+rr.id+rr.user_id}
           id={rr.id}
-          user_id={rr.user_id}
           name={rr.name}
           description={rr.description}
           mileage={rr.mileage}
           category={rr.category}
-          weatherconditions={rr.weatherconditions}
-          points_interest={rr.points_interest}
-          start_location={rr.start_location}
-          end_location={rr.end_location}
-          map_start_latitude={rr.map_start_latitude}
-          map_start_longitude={rr.map_start_longitude}
-          map_end_latitude={rr.map_end_latitude}
-          map_end_longitude={rr.map_end_longitude}
+          coordinates={rr.coordinates}
+
         /></div>);
     });
 
@@ -72,7 +65,7 @@ class IndexContainer extends Component {
     const renderPageNumbers = pageNumbers.map(number => {
       return (
         <button
-          className="button"
+          className="button numbers"
           key={number}
           id={number}
           onClick={this.handleClick}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router'
+import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 'react-router'
 
 const NavBar = props => {
   return (
