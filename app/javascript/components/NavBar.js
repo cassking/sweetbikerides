@@ -6,8 +6,8 @@ const NavBar = props => {
   <div className="container">
     <div className="row">
       <div className="column">
-        <button onClick={browserHistory.goBack}> Back </button>
-        <Link to='/'><button> Home</button></Link>
+        <button className="back-button" onClick={browserHistory.goBack}> Back </button>
+        <Link to='/add_review'><button className="add-review">Add Review</button></Link>
         { props.children }
       </div>
     </div>

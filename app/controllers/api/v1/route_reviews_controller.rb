@@ -11,6 +11,9 @@ class Api::V1::RouteReviewsController < ApplicationController
   end
 
   private
+    def pattern_params
+      params.require(:route_review).permit(coordinates: [])
+    end
 
   def route_review_params
     params.require(:route_review).permit(

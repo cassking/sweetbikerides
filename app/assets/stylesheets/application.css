@@ -32,7 +32,9 @@ h1,h2,h3,h4 {
   font-family: "Titillium Web",Arial,sans-serif;
   font-weight: 900;
 }
-
+h3#homepage {
+  display:inline-block;
+}
 a {
   font-family: "Titillium Web",Arial,sans-serif;
   color: #8B0000;
@@ -49,8 +51,35 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px
 }
-
-.main-navigation, .right {
+.navigation {
+  margin: 0 auto;
+  width: 80%;
+  border: 1px solid #8B0000;
+  background: #eee;
+  border-radius: 6px;
+  text-align: center;
+  position: relative;
+  top: -100px;
+}
+.outer {
+  position: relative;
+  top: -50px;
+}
+.users-panel {
+  width: 100%;
+}
+.users-panel,
+.users-panel li {
+display:inline-block;
+}
+.users-panel li{
+  margin-left: 5%;
+}
+#logout {
+  display:inline-block;
+}
+.main-navigation, .users-panel{
+  margin: 0 auto;
   list-style: none;
 }
 
@@ -62,6 +91,7 @@ a:focus {
 
 .top-bar #title a:hover {
   color: #fff;
+
 }
 
 .top-bar {
@@ -122,17 +152,21 @@ a:focus {
 }
 
 .button, button {
+  font-size: 0.8em;
   text-transform: uppercase;
   border-radius: 10px;
   border: 3px solid #8B0000;
-  width: 125px;
-  padding: 4px;
+  width: 15%;
+  padding: 0;
   line-height: 1.1;
   font-family: "Titillium Web",Arial,sans-serif;
   font-weight: 600;
   background-color: #8B0000;
   color: #fff;
   margin: 4px;
+}
+.back-button, .add-review{
+  min-width: 125px;
 }
 
 .button:hover, button:hover {

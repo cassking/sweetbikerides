@@ -15,16 +15,16 @@
 </head>
 <body>
   <div class="top-bar">
-       <h1 id="title"><a href="/">Sweetbikerides!</a></h1> 
+       <h1 id="title"><a href="/">Sweetbikerides!</a></h1>
       </div>
       <nav class="navigation">
   <ul class="main-navigation" role="navigation">
     <% if current_user  %>
-      <li id="submit1"><a class="button button-primary" id="submit1" href="logout">Sign Out</a></li>
+      <li id="logout"><a class="button button-primary" id="logout" href="logout">Sign Out</a></li>
     <% else %>
     <h3 id="homepage">Welcome to SweetBikeRides!  </h3>
-      <li id="submit1">
-        <ul class="right">
+      <li id="logout">
+        <ul class="users-panel">
           <%- if current_user -%>
             <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <%- else -%>

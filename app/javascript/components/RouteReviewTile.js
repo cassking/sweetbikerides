@@ -3,6 +3,7 @@ import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 're
 import MapTile from './MapTile'
 
 const RouteReviewTile = (props) => {
+
   return(
     <div className="one-third column">
 
@@ -12,10 +13,12 @@ const RouteReviewTile = (props) => {
               <ul className="route-details">
                 <li>Desc: {props.description}</li>
                 <li>Mileage: {props.mileage}</li>
-                <li>Category: {props.category}</li>
+                <li>Categories: {props.categories}</li>
                 <li><MapTile
-                      coordinates={props.coordinates}/>
-                    </li>
+                      coordinates={props.coordinates}
+                      center={props.center}
+                    />
+                </li>
 
               </ul>
             </div>

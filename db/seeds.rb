@@ -26,11 +26,11 @@ u1 = User.create!(username: "admin1",email: "admin11@gmail.com", password: "pw12
 u2 = User.create!(username: "user2",email: "u22@gmail.com", password: "pw1234")
 u3 = User.create!(username: "user3",email: "u33@gmail.com", password: "pw1234")
 admin = User.create!(username: "admin1", email: "admin1@gmail.com", password: "pw1234", role: "admin")
-rr1 = RouteReview.create!(user_id:User.last.id, name: "Widow's Peak to Gravel Fountain",
+rr1 = RouteReview.create!(user_id:User.last.id, name: "Widow's Peak to Gravel Fountain", mileage: 68.7, coordinates: [],
 description: "This is a wonderful route, full of long hard climbs and fun
 descents. It ends at Gravel Fountain", category: Category.first.id,
 map_start_latitude: -99.865722, map_start_longitude:39.00211, map_end_latitude:-99.684448, map_end_longitude:  38.972221)
-rr2 = RouteReview.create!(user_id:User.last.id, name: "The Devils peak ride",
+rr2 = RouteReview.create!(user_id:User.last.id, name: "The Devils peak ride", mileage: 90.6, coordinates: [],
 description: "This is a hard grinder, 90 miles of gravel and hills", category:  Category.last.id,
 map_start_latitude: -101.744384, map_start_longitude:39.32155, map_end_latitude:-101.552124, map_end_longitude: 39.330048)
 c1= Comment.create!(user_id:User.first.id, route_review_id:RouteReview.last.id, body:"thanks for posting this, it was intese and fun")
