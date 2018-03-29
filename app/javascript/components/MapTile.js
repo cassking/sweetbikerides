@@ -31,7 +31,7 @@ const MapTile = (props) => {
           width: "50vw"
         }}
 
-        center={props.coordinates[0]}
+        center={props.coordinates}
         >
         <Layer
           type="line"

@@ -3,7 +3,7 @@ import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 're
 import ReactMapboxGl, { Layer, Feature, ZoomControl } from "react-mapbox-gl";
 import { geoData } from '../Constants';
 import DropdownMenu from 'react-dd-menu';
-import RouteReviewTile from '../components/RouteReviewTile'
+import IndexRouteReviewTile from '../components/IndexRouteReviewTile'
 
 class IndexContainer extends Component {
   constructor(props) {
@@ -48,20 +48,18 @@ class IndexContainer extends Component {
       console.log('rr', rr)
       return(
         <div>
-        <RouteReviewTile
+        <IndexRouteReviewTile
           key={rr.name+rr.id+rr.user_id}
           id={rr.id}
           name={rr.name}
           description={rr.description}
           mileage={rr.mileage}
-          categories={rr.categories}
+          category={rr.category}
           coordinates={rr.coordinates}
-
         /></div>);
     });
 
     // Logic for displaying page numbers
-
 
     const renderPageNumbers = pageNumbers.map(number => {
       return (

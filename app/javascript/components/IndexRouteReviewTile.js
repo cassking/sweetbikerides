@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 'react-router'
 import MapTile from './MapTile'
 
-const RouteReviewTile = (props) => {
+const IndexRouteReviewTile = (props) => {
 
   return(
     <div className="one-third column">
@@ -13,12 +13,12 @@ const RouteReviewTile = (props) => {
               <ul className="route-details">
                 <li>Desc: {props.description}</li>
                 <li>Mileage: {props.mileage}</li>
-                <li>Categories: {props.categories}</li>
-                <li><MapTile
+                <li>Category: {props.category}</li>
+                {/* <li><MapTile
                       coordinates={props.coordinates}
                       center={props.center}
                     />
-                </li>
+                </li> */}
 
               </ul>
             </div>
@@ -28,4 +28,4 @@ const RouteReviewTile = (props) => {
   )
 }
 
-export default RouteReviewTile;
+export default IndexRouteReviewTile;

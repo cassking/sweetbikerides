@@ -1,0 +1,187 @@
+import React, { Component } from 'react';
+import CommentTile from '../components/CommentTile';
+import CommentFormContainer from './CommentFormContainer';
+
+class CommentsContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: [],
+      signed_in: false,
+      currentPage: 1,
+      commentsPerPage: 4,
+      if_admin: false,
+      user_id: null
+    }
+    this.handleClick = this.handleClick.bind(this);
+
+    this.addNewComment = this.addNewComment.bind(this);
+    this.getCommentsData = this.getCommentsData.bind(this);
+
+    this.handleDeleteComment = this.handleDeleteComment.bind(this);
+  }
+
+  handleDeleteComment(comment_id) {
+   let routereviewId =this.props.routereviewId;
+   fetch(`/api/v1/route_reviews/${routereviewId}/comments/${comment_id}`, {
+     method: 'DELETE',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+   .then(response => {
+     if (response.ok) {
+       return response;
+     } else {
+       let errorMessage = `${response.status} (${response.statusText})`,
+       error = new Error(errorMessage);
+       throw(error);
+     }
+   })
+   .then(response => response.json())
+   .then(body => {
+     this.setState({
+       comments: body['comment']['comments'],
+
+     })
+   })
+  }
+
+
+
+
+ componentDidMount(){
+   this.getCommentsData()
+ }
+
+  getCommentsData(){
+    let route_reviewsId = this.props.route_reviewsId
+    fetch(`/api/v1/route_reviewss/${route_reviewsId}/comments`, {
+      credentials: 'same-origin'
+    })
+    .then(response => {
+      if (response.ok) {
+        let parsed = response.json()
+       return parsed
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(body => {
+
+      this.setState({
+        comments: body['comments'],
+        signed_in: body['signed_in'],
+        if_admin: body['if_admin'],
+        user_id: body['user_id']
+      })
+    })
+  }
+
+  addNewComment(formPayload) {
+    let route_reviewsId = this.props.route_reviewsId
+    fetch(`/api/v1/route_reviewss/${route_reviewsId}/comments`, {
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
+    .then(body => {
+      let updatedComments = this.state.comments;
+      updatedComments.unshift(body['comment'])
+      this.setState({
+        comments: updatedComments,
+        signed_in: body['signed_in']
+      })
+    })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  handleClick(event) {
+    this.setState({
+      currentPage: Number(event.target.id)
+    });
+  }
+
+  render(){
+    const { comments, currentPage, commentsPerPage } = this.state;
+    const indexOfLastComment = currentPage * commentsPerPage;
+    const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+    const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
+    let if_admin = this.state.if_admin
+    let signed_in = this.state.signed_in
+    let user_id = this.state.user_id
+    const renderComments = currentComments.map((comment, index) => {
+
+
+       return (
+        <div className="comment-vote">
+          <CommentTile
+            id={comment.comment.id}
+            key={comment.comment.id}
+            body={comment.comment.body}
+            username={comment.username}
+            route_reviewsId={comment.comment.route_reviews_id}
+      
+            commentId={comment.comment.id}
+            handleDelete={handleDelete}
+            show={show}
+          />
+        </div>
+      )
+    });
+
+    // Logic for displaying page numbers
+    const pageNumbers = [];
+    for (let i = 1; i <= Math.ceil(comments.length / commentsPerPage); i++) {
+      pageNumbers.push(i);
+    }
+
+    const renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <li
+          className="button"
+          key={number}
+          id={number}
+          onClick={this.handleClick}
+        >
+          {number}
+        </li>
+      );
+    });
+
+    return(
+      <div className="comments-container">
+        <CommentFormContainer
+          addNewComment={this.addNewComment}
+          signed_in={this.state.signed_in}
+        />
+        <ul>
+          {renderComments}
+        </ul>
+        <ul id="page-numbers">
+          {renderPageNumbers}
+        </ul>
+      </div>
+    )
+  }
+}
+
+export default CommentsContainer;
