@@ -20,13 +20,11 @@ class IndexContainer extends Component {
   componentDidMount() {
     fetch('/api/v1/route_reviews')
     .then(response => {
-      console.log('response', response)
       let parsed = response.json()
       return parsed
     }).then(route_reviews => {
-      console.log('fetch route reviews',route_reviews)
       this.setState({
-        allRouteReviews: route_reviews
+        allRouteReviews: route_reviews.route_reviews
       })
     })
   }
@@ -40,12 +38,13 @@ class IndexContainer extends Component {
 
   render() {
     const { allRouteReviews, currentPage, r_reviewsPerPage } = this.state;
+    console.log('allRouteReviews', allRouteReviews)
+
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(allRouteReviews.length / r_reviewsPerPage); i++) {
       pageNumbers.push(i);
     }
     const r_reviews = allRouteReviews.map((rr, index) => {
-      console.log('rr', rr)
       return(
         <div>
         <IndexRouteReviewTile
@@ -78,7 +77,6 @@ class IndexContainer extends Component {
       <div className="main-wrapper">
       <div className="route-reviews-wrapper">
         <Link to={'/mapcontainer'}>Peek at example map here</Link>
-
         <ul>
           {r_reviews}
         </ul>

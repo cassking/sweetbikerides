@@ -1,13 +1,23 @@
 class Api::V1::RouteReviewsController < ApplicationController
+  # before_action :authenticate_user!
+
   def index
     @route_reviews = RouteReview.all
+    # binding.pry
     render json: @route_reviews
   end
+
   def show
     @signed_in = user_signed_in?
-    if_admin = false
-    if_admin = current_user.admin? if @signed_in
-    @route_review= RouteReview.find(params[:id])
+    if current_user
+      @current_user_id = current_user.id
+    else
+        @current_user_id = nil
+    end
+    @route_review = RouteReview.find(params[:id])
+
+    @comments = Comment.where(route_review_id: params[:id])
+    render json: @route_review, serializer: RouteReviews::ShowSerializer
   end
 
   private

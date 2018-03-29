@@ -8,18 +8,23 @@ class RouteReviewShowContainer extends Component {
     super(props);
     this.state = {
       route_review: {},
-      coordinates: []
+      user_id: null,
+      comments: []
     }
   }
 
-  componentWillMount() {
-    let routereviewId = this.props.params.id
-    fetch(`/api/v1/route_reviews/${routereviewId}`)
+  componentDidMount() {
+    let route_reviewId = this.props.params.id
+    fetch(`/api/v1/route_reviews/${route_reviewId}`)
     .then(response => {
-      let parsed = response.json()
-      return parsed
+      // let parsed = response.json()
+      return response.json()
     }).then(data => {
-      this.setState({ route_review: data, coordinates: data["coordinates"]})
+      // debugger
+      this.setState({
+        route_review: data['route_review'],
+        comments: data['comments']
+      })
     })
   }
 //add this below later when resolved
@@ -27,7 +32,6 @@ class RouteReviewShowContainer extends Component {
 
 
   render() {
-
     return(
       <div className="main-wrapper">
         <div className="route-review-show">
@@ -39,7 +43,10 @@ class RouteReviewShowContainer extends Component {
         <div className="route-review-show-comments">
           <hr />
         <CommentsContainer
-          routereviewId={this.props.params.id}
+          routeReviewId={this.props.params.id}
+          comments={this.state.route_review.comments}
+          signed_in={this.state.signed_in}
+          user_id={this.state.user_id}
         />
       </div>
       </div>

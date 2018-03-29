@@ -13,7 +13,6 @@ const App = props => {
       <Route path='/' component={NavBar}>
        <IndexRoute  component={IndexContainer} />
        <Route path="route_reviews/:id" component={RouteReviewShowContainer} />
-
         <Route path='/add-review' component={RouteReviewFormContainer} />
       </Route>
     </Router>

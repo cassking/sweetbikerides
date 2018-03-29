@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 'react-router'
 import MapTile from './MapTile'
+import { geoData } from '../Constants';
 
 
 const RouteReviewShow = (props) => {

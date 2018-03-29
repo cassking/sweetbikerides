@@ -6,24 +6,20 @@ class CommentsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: [],
       signed_in: false,
       currentPage: 1,
-      commentsPerPage: 4,
+      commentsPerPage: 10,
       if_admin: false,
       user_id: null
     }
     this.handleClick = this.handleClick.bind(this);
-
     this.addNewComment = this.addNewComment.bind(this);
-    this.getCommentsData = this.getCommentsData.bind(this);
-
     this.handleDeleteComment = this.handleDeleteComment.bind(this);
   }
 
   handleDeleteComment(comment_id) {
-   let routereviewId =this.props.routereviewId;
-   fetch(`/api/v1/route_reviews/${routereviewId}/comments/${comment_id}`, {
+   let route_reviewId=this.props.route_reviewId;
+   fetch(`/api/v1/route_reviews/${route_reviewId}/comments/${comment.id}`, {
      method: 'DELETE',
         credentials: 'same-origin',
         headers: {
@@ -43,48 +39,15 @@ class CommentsContainer extends Component {
    .then(response => response.json())
    .then(body => {
      this.setState({
-       comments: body['comment']['comments'],
-
+       comments: body['comment']['comments']
      })
    })
   }
 
 
-
-
- componentDidMount(){
-   this.getCommentsData()
- }
-
-  getCommentsData(){
-    let route_reviewsId = this.props.route_reviewsId
-    fetch(`/api/v1/route_reviewss/${route_reviewsId}/comments`, {
-      credentials: 'same-origin'
-    })
-    .then(response => {
-      if (response.ok) {
-        let parsed = response.json()
-       return parsed
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then(body => {
-
-      this.setState({
-        comments: body['comments'],
-        signed_in: body['signed_in'],
-        if_admin: body['if_admin'],
-        user_id: body['user_id']
-      })
-    })
-  }
-
   addNewComment(formPayload) {
-    let route_reviewsId = this.props.route_reviewsId
-    fetch(`/api/v1/route_reviewss/${route_reviewsId}/comments`, {
+    let route_reviewId= this.props.route_reviewId
+    fetch(`/api/v1/route_reviews/${route_reviewId}/comments`, {
       method: 'POST',
       body: JSON.stringify(formPayload),
       credentials: 'same-origin',
@@ -121,26 +84,39 @@ class CommentsContainer extends Component {
   }
 
   render(){
-    const { comments, currentPage, commentsPerPage } = this.state;
+    let comments = []
+    let user_id = this.props.user_id
+    let signed_in = this.props.signed_in
+    if (this.props.comments){
+      comments = this.props.comments
+    }
+
+    const { currentPage, commentsPerPage } = this.state;
     const indexOfLastComment = currentPage * commentsPerPage;
     const indexOfFirstComment = indexOfLastComment - commentsPerPage;
     const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
+
     let if_admin = this.state.if_admin
-    let signed_in = this.state.signed_in
-    let user_id = this.state.user_id
     const renderComments = currentComments.map((comment, index) => {
+      debugger
+      let handleDelete =() =>{ this.handleDeleteComment(comment.id) }
+      let show = false
+      if (if_admin) {
+        show = true
+      } else if (user_id == comment.user_id) {
+        show = true
+      } else {}
 
 
        return (
-        <div className="comment-vote">
+        <div className="comment-route-review">
           <CommentTile
-            id={comment.comment.id}
-            key={comment.comment.id}
-            body={comment.comment.body}
+            id={comment.id}
+            key={comment.id}
+            body={comment.body}
             username={comment.username}
-            route_reviewsId={comment.comment.route_reviews_id}
-      
-            commentId={comment.comment.id}
+            route_reviewId={comment.route_review_id}
+            commentId={comment.id}
             handleDelete={handleDelete}
             show={show}
           />

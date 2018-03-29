@@ -34,6 +34,12 @@ rr2 = RouteReview.create!(user_id:User.last.id, name: "The Devils peak ride", mi
 description: "This is a hard grinder, 90 miles of gravel and hills", category:  Category.last.id,
 map_start_latitude: -101.744384, map_start_longitude:39.32155, map_end_latitude:-101.552124, map_end_longitude: 39.330048)
 c1= Comment.create!(user_id:User.first.id, route_review_id:RouteReview.last.id, body:"thanks for posting this, it was intese and fun")
-c2= Comment.create!(user_id:User.last.id, route_review_id:RouteReview.first.id, body:"I will be riding this in two weeks")
+c2= Comment.create!(user_id:User.last.id, route_review_id:RouteReview.last.id, body:"this was a cool ride. thank you")
+c3= Comment.create!(user_id:User.first.id, route_review_id:RouteReview.last.id, body:"will be doing it next weekend!")
+
+c4= Comment.create!(user_id:User.first.id, route_review_id:RouteReview.first.id, body:"I will be riding this in two weeks")
+c5= Comment.create!(user_id:User.last.id, route_review_id:RouteReview.first.id, body:"great fun")
+c6= Comment.create!(user_id:User.first.id, route_review_id:RouteReview.first.id, body:"super challenging")
+
 rrc1= RouteReviewCategory.create!(category_id: cat1.id, route_review_id:rr1.id)
 rrc2= RouteReviewCategory.create!(category_id: cat2.id, route_review_id:rr2.id)
