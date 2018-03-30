@@ -20,11 +20,18 @@
       <nav class="navigation">
   <ul class="main-navigation" role="navigation">
     <% if current_user  %>
-      <li id="logout"><a class="button button-primary" id="logout" href="logout">Sign Out</a></li>
+    <li><h4>Welcome back, <%= current_user.username %>! </h4>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+    </li>
     <% else %>
     <h3 id="homepage">Welcome to SweetBikeRides!  </h3>
       <li id="logout">
         <ul class="users-panel">
+          <%- flash.each do |key, value| -%>
+            <div class="flash flash-<%= key %>">
+              <%= value %>
+            </div>
+          <%- end -%>
           <%- if current_user -%>
             <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <%- else -%>
@@ -36,11 +43,7 @@
   </ul>
 </nav>
 
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
-  <%- end -%>
+
   <div class="outer">
     <div class="middle">
       <div class="inner">

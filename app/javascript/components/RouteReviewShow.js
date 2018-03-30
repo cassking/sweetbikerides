@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 'react-router'
 import MapTile from './MapTile'
+import { categoriesDifficulty } from '../Categories';
 import { geoData } from '../Constants';
-
 
 const RouteReviewShow = (props) => {
   return(
@@ -15,6 +15,7 @@ const RouteReviewShow = (props) => {
               center={props.center}
             />
         </li>
+
       </ul>
     </div>
   )

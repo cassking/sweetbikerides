@@ -6,4 +6,5 @@ class RouteReviewSerializer < ActiveModel::Serializer
             :mileage,
             :start_location,
             :end_location
+
 end

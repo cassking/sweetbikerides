@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RouteReviewShow from '../components/RouteReviewShow';
 import DropdownMenu from 'react-dd-menu';
 import CommentsContainer from './CommentsContainer';
+import { categoriesDifficulty } from '../Categories';
 
 class RouteReviewShowContainer extends Component {
   constructor(props) {
@@ -9,7 +10,9 @@ class RouteReviewShowContainer extends Component {
     this.state = {
       route_review: {},
       user_id: null,
-      comments: []
+      comments: [],
+      signed_in: false,
+      if_admin: false
     }
   }
 
@@ -17,10 +20,8 @@ class RouteReviewShowContainer extends Component {
     let route_reviewId = this.props.params.id
     fetch(`/api/v1/route_reviews/${route_reviewId}`)
     .then(response => {
-      // let parsed = response.json()
       return response.json()
     }).then(data => {
-      // debugger
       this.setState({
         route_review: data['route_review'],
         comments: data['comments']
@@ -43,9 +44,11 @@ class RouteReviewShowContainer extends Component {
         <div className="route-review-show-comments">
           <hr />
         <CommentsContainer
-          routeReviewId={this.props.params.id}
+          routeReviewId={this.state.route_review.id}
           comments={this.state.route_review.comments}
           signed_in={this.state.signed_in}
+          if_admin={this.state.if_admin}
+          current_user={this.current_user}
           user_id={this.state.user_id}
         />
       </div>

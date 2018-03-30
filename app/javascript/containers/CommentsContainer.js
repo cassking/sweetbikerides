@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import CommentTile from '../components/CommentTile';
-import CommentFormContainer from './CommentFormContainer';
+import RouteReviewCommentsFormContainer from './RouteReviewCommentsFormContainer';
 
 class CommentsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       signed_in: false,
+      current_user: null,
       currentPage: 1,
       commentsPerPage: 10,
       if_admin: false,
@@ -18,8 +19,10 @@ class CommentsContainer extends Component {
   }
 
   handleDeleteComment(comment_id) {
-   let route_reviewId=this.props.route_reviewId;
-   fetch(`/api/v1/route_reviews/${route_reviewId}/comments/${comment.id}`, {
+    let comments = this.props.comments
+   let route_reviewId=this.props.routeReviewId;
+console.log('route_reviewId', comments)
+   fetch(`/api/v1/route_reviews/${route_reviewId}/comments/${comment_id}`, {
      method: 'DELETE',
         credentials: 'same-origin',
         headers: {
@@ -38,7 +41,10 @@ class CommentsContainer extends Component {
    })
    .then(response => response.json())
    .then(body => {
+     // debugger
      this.setState({
+       signed_in: body['signed_in'],
+
        comments: body['comment']['comments']
      })
    })
@@ -67,11 +73,11 @@ class CommentsContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
+
       let updatedComments = this.state.comments;
       updatedComments.unshift(body['comment'])
       this.setState({
-        comments: updatedComments,
-        signed_in: body['signed_in']
+        comments: updatedComments
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -86,6 +92,7 @@ class CommentsContainer extends Component {
   render(){
     let comments = []
     let user_id = this.props.user_id
+    let current_user = this.props.current_user
     let signed_in = this.props.signed_in
     if (this.props.comments){
       comments = this.props.comments
@@ -98,15 +105,13 @@ class CommentsContainer extends Component {
 
     let if_admin = this.state.if_admin
     const renderComments = currentComments.map((comment, index) => {
-      debugger
       let handleDelete =() =>{ this.handleDeleteComment(comment.id) }
       let show = false
       if (if_admin) {
         show = true
-      } else if (user_id == comment.user_id) {
+      } else if (current_user == comment.user_id ) {
         show = true
       } else {}
-
 
        return (
         <div className="comment-route-review">
@@ -145,7 +150,7 @@ class CommentsContainer extends Component {
 
     return(
       <div className="comments-container">
-        <CommentFormContainer
+        <RouteReviewCommentsFormContainer
           addNewComment={this.addNewComment}
           signed_in={this.state.signed_in}
         />

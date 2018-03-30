@@ -1,12 +1,42 @@
-import React, { Component } from 'react'
-import CommentForm from '../components/CommentForm';
+ import React, { Component } from 'react';
+ import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 'react-router'
+import ReactMapboxGl, { Layer, Feature, ZoomControl } from "react-mapbox-gl";
+ import DropdownMenu from 'react-dd-menu';
+import { categoriesDifficulty } from '../Categories';
+ import CommentForm from '../components/CommentForm'
+ const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ"
 
-class CommentFormContainer extends Component {
+ class RouteReviewCommentsFormContainer extends Component {
+//     this.state = {
+//       // GeoJSON object to hold our measurement features
+//       category: '',
+//       categories: [],
+//       geojson: {
+//           "type": "FeatureCollection",
+//           "features": []
+//       },//end geojson obj
+//       // Used to draw a line between points
+//       linestring : {
+//           "type": "Feature",
+//           "geometry": {
+//               "type": "LineString",
+//               "coordinates": []
+//           }
+//       }//end linestring obj
+//     }//end state
+//
+//   }
+
   constructor(props) {
+mapboxgl.accessToken = accessToken;
+
     super(props)
     this.state = {
       comment: '',
-      errors: {}
+      errors: {},
+      signed_in: false,
+      if_admin: false,
+      user_id: null
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -69,6 +99,8 @@ class CommentFormContainer extends Component {
       errorDiv = <div className="callout alert">{errorItems}</div>
     }
     let commentForm;
+    //this logic not working, remove for now
+    //while buildig out form
     if (this.props.signed_in) {
       commentForm = <CommentForm
                       comment={this.state.comment}
@@ -77,7 +109,13 @@ class CommentFormContainer extends Component {
                     />
     }
     else {
-      commentForm = <p>Sign in to comment</p>
+      commentForm =
+      // <p>Sign in to comment</p>
+      <CommentForm
+                      comment={this.state.comment}
+                      handleFormSubmit={this.handleFormSubmit}
+                      handleChange={this.handleChange}
+                    />
     }
     return (
       <div>
@@ -88,4 +126,4 @@ class CommentFormContainer extends Component {
   }
 }
 
-export default CommentFormContainer;
+export default RouteReviewCommentsFormContainer;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327182001) do
+ActiveRecord::Schema.define(version: 20180330012731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 20180327182001) do
     t.integer "user_id", null: false
     t.string "name", null: false
     t.string "description", null: false
-    t.string "category", null: false
+    t.string "category", default: "Asphalt", null: false
     t.string "weatherconditions"
-    t.integer "mileage"
+    t.float "mileage", default: 0.0
     t.text "points_interest"
     t.string "start_location"
     t.string "end_location"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20180327182001) do
     t.float "map_start_longitude"
     t.float "map_end_latitude"
     t.float "map_end_longitude"
+    t.string "difficulty", default: "Flat"
   end
 
   create_table "users", force: :cascade do |t|

@@ -51,6 +51,10 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px
 }
+
+.flash-notice {
+  top: -100px;
+}
 .navigation {
   margin: 0 auto;
   width: 80%;
@@ -165,7 +169,7 @@ display:inline-block;
   color: #fff;
   margin: 4px;
 }
-.back-button, .add-review{
+.back-button, .add-review, .delete-comment{
   min-width: 125px;
 }
 

@@ -1,19 +1,19 @@
-export const categories  = {
-  "roadSurface": {
-    '1' : 'Asphalt',
-    '2' : 'Grass',
-    '3' : 'Gravel',
-    '4' : 'Dirt/Rocky',
-    '5' : 'Mixed/Asphalt/Gravel/Grass',
-    '6' : 'Dirt'
-  },
-  "difficulty": {
-    '1' : 'Flat',
-    '2' : 'Flat/Rolling Hills',
-    '3' : 'Rolling Hills',
-    '4' : 'Hilly',
-    '5' : 'Very Hilly'  
+export const categoriesDifficulty  = {
+  "categories": [
+    'Asphalt',
+    'Grass',
+    'Gravel',
+    'Dirt/Rocky',
+    'Mixed/Asphalt/Gravel/Grass',
+    'Dirt'
+  ],
+  "difficulty": [
+  'Flat',
+  'Flat/Rolling Hills',
+  'Rolling Hills',
+  'Hilly',
+  'Very Hilly'
 
-  }
+  ]
 
   }

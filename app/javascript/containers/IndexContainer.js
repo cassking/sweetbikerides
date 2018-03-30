@@ -11,7 +11,9 @@ class IndexContainer extends Component {
     this.state = {
       allRouteReviews: [],
       currentPage: 1,
-      r_reviewsPerPage: 20
+      r_reviewsPerPage: 20,
+      signed_in: false,
+      current_user:null
     }
     this.handleClick = this.handleClick.bind(this);
 
@@ -23,9 +25,13 @@ class IndexContainer extends Component {
       let parsed = response.json()
       return parsed
     }).then(route_reviews => {
+      console.log('signed in..> ',route_reviews)
+
       this.setState({
-        allRouteReviews: route_reviews.route_reviews
-      })
+        allRouteReviews: route_reviews.route_reviews,
+        signed_in: route_reviews.signed_in,
+        user_id: route_reviews.user_id
+            })
     })
   }
 
@@ -39,7 +45,6 @@ class IndexContainer extends Component {
   render() {
     const { allRouteReviews, currentPage, r_reviewsPerPage } = this.state;
     console.log('allRouteReviews', allRouteReviews)
-
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(allRouteReviews.length / r_reviewsPerPage); i++) {
       pageNumbers.push(i);
