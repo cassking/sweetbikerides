@@ -7,6 +7,7 @@ import { categoriesDifficulty } from '../Categories';
  const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ"
 
  class RouteReviewCommentsFormContainer extends Component {
+//SAVE THIS FOR BUILDING OUT ROUTEREVIEWADDREVIEWFORMCONTAINER
 //     this.state = {
 //       // GeoJSON object to hold our measurement features
 //       category: '',
@@ -28,12 +29,12 @@ import { categoriesDifficulty } from '../Categories';
 //   }
 
   constructor(props) {
-mapboxgl.accessToken = accessToken;
 
     super(props)
     this.state = {
       comment: '',
       errors: {},
+      //THESE COME IN AS PROPS
       signed_in: false,
       if_admin: false,
       user_id: null
@@ -106,16 +107,15 @@ mapboxgl.accessToken = accessToken;
                       comment={this.state.comment}
                       handleFormSubmit={this.handleFormSubmit}
                       handleChange={this.handleChange}
+                      signed_in={this.props.signed_in}
+                      if_admin={this.props.if_admin}
+                      user_id={this.props.user_id}
                     />
     }
     else {
       commentForm =
-      // <p>Sign in to comment</p>
-      <CommentForm
-                      comment={this.state.comment}
-                      handleFormSubmit={this.handleFormSubmit}
-                      handleChange={this.handleChange}
-                    />
+    <p>Sign in to comment</p>
+
     }
     return (
       <div>

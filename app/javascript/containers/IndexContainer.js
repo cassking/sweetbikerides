@@ -81,7 +81,6 @@ class IndexContainer extends Component {
     return(
       <div className="main-wrapper">
       <div className="route-reviews-wrapper">
-        <Link to={'/mapcontainer'}>Peek at example map here</Link>
         <ul>
           {r_reviews}
         </ul>

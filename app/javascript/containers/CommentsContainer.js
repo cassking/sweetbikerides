@@ -6,6 +6,7 @@ class CommentsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      comments:this.props.comments,
       signed_in: false,
       current_user: null,
       currentPage: 1,
@@ -13,6 +14,9 @@ class CommentsContainer extends Component {
       if_admin: false,
       user_id: null
     }
+    //will use THIS to get current user and signed in, but comments are
+    // gotten via props from parent
+    this.getCommentsDataSignedInCurrentUser = this.getCommentsDataSignedInCurrentUser.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.addNewComment = this.addNewComment.bind(this);
     this.handleDeleteComment = this.handleDeleteComment.bind(this);
@@ -40,17 +44,50 @@ class CommentsContainer extends Component {
    })
    .then(response => response.json())
    .then(body => {
+
      this.setState({
        signed_in: body['signed_in'],
-
        comments: body['comment']['comments']
      })
    })
   }
+  componentDidMount(){
+     this.getCommentsDataSignedInCurrentUser()
+   }
+  getCommentsDataSignedInCurrentUser(){
+    let route_reviewId=this.props.routeReviewId;
+    //will use THIS to get current user and signed in, but comments are
+    // gotten via props from parent
+      fetch(`/api/v1/route_reviews/${route_reviewId}/comments`, {
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+         return response.json()
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(body => {
+        console.log('body, singed in?:',body, this.state.signed_in)
 
+//only setting the current user and signed in states here
+        this.setState({
+          signed_in: body['signed_in'],
+          if_admin: body['if_admin'],
+          user_id: body['user_id']
+        })
+      })
+    }
 
   addNewComment(formPayload) {
-    let route_reviewId= this.props.route_reviewId
+    let route_reviewId=this.props.routeReviewId;
     fetch(`/api/v1/route_reviews/${route_reviewId}/comments`, {
       method: 'POST',
       body: JSON.stringify(formPayload),
@@ -71,8 +108,8 @@ class CommentsContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
+      console.log(body)
       let updatedComments = this.state.comments;
-      updatedComments.unshift(body['comment'])
       this.setState({
         comments: updatedComments
       })
@@ -87,10 +124,15 @@ class CommentsContainer extends Component {
   }
 
   render(){
+    //the comments in this case come from
+    //parent as props ..but..
     let comments = []
-    let user_id = this.props.user_id
-    let current_user = this.props.current_user
-    let signed_in = this.props.signed_in
+    //...get the signed_in and current user from the
+    //getCommentsDataSignedInCurrentUser() fetch call
+    let if_admin = this.state.if_admin
+    let signed_in = this.state.signed_in
+    let user_id = this.state.user_id
+    //again, comments here come via props
     if (this.props.comments){
       comments = this.props.comments
     }
@@ -100,13 +142,12 @@ class CommentsContainer extends Component {
     const indexOfFirstComment = indexOfLastComment - commentsPerPage;
     const currentComments = comments.slice(indexOfFirstComment, indexOfLastComment);
 
-    let if_admin = this.state.if_admin
-    const renderComments = currentComments.map((comment, index) => {
+    const renderComments = currentComments.reverse().map((comment, index) => {
       let handleDelete =() =>{ this.handleDeleteComment(comment.id) }
       let show = false
       if (if_admin) {
         show = true
-      } else if (current_user == comment.user_id ) {
+      } else if (user_id == comment.user_id ) {
         show = true
       } else {}
 
@@ -122,6 +163,7 @@ class CommentsContainer extends Component {
             datePosted={comment.created_at}
             handleDelete={handleDelete}
             show={show}
+
           />
         </div>
       )
@@ -151,6 +193,9 @@ class CommentsContainer extends Component {
         <RouteReviewCommentsFormContainer
           addNewComment={this.addNewComment}
           signed_in={this.state.signed_in}
+          if_admin={this.state.if_admin}
+          user_id={this.state.user_id}
+
         />
         <ul>
           {renderComments}
