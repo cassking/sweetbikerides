@@ -20,9 +20,8 @@ class CommentsContainer extends Component {
 
   handleDeleteComment(comment_id) {
     let comments = this.props.comments
-   let route_reviewId=this.props.routeReviewId;
-console.log('route_reviewId', comments)
-   fetch(`/api/v1/route_reviews/${route_reviewId}/comments/${comment_id}`, {
+    let route_reviewId=this.props.routeReviewId;
+    fetch(`/api/v1/route_reviews/${route_reviewId}/comments/${comment_id}`, {
      method: 'DELETE',
         credentials: 'same-origin',
         headers: {
@@ -41,7 +40,6 @@ console.log('route_reviewId', comments)
    })
    .then(response => response.json())
    .then(body => {
-     // debugger
      this.setState({
        signed_in: body['signed_in'],
 
@@ -73,7 +71,6 @@ console.log('route_reviewId', comments)
     })
     .then(response => response.json())
     .then(body => {
-
       let updatedComments = this.state.comments;
       updatedComments.unshift(body['comment'])
       this.setState({
@@ -122,6 +119,7 @@ console.log('route_reviewId', comments)
             username={comment.username}
             route_reviewId={comment.route_review_id}
             commentId={comment.id}
+            datePosted={comment.created_at}
             handleDelete={handleDelete}
             show={show}
           />

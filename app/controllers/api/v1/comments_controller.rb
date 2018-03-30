@@ -1,5 +1,5 @@
 class Api::V1::CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   def index
     @signed_in = user_signed_in?
     if_admin = false
@@ -15,8 +15,6 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def destroy
-    # if_admin = current_user.admin? if @signed_in
-
     @deleted_comment = Comment.find(params[:id])
     if current_user ==   @deleted_comment.user
       @deleted_comment.destroy
