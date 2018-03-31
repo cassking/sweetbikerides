@@ -1,0 +1,18 @@
+
+.comment-route-review div,
+.comment-route-review .comment,
+.comment-route-review div,
+.comment-route-review .comment h5.username-comment,
+.comment-route-review .comment p,
+.comment-route-review .comment .posted-at{
+  margin:0;
+  padding:0;
+}
+
+.comment-route-review .comment .posted-at{
+font-size: 0.7em;
+font-style:italic;
+}
+.comment-route-review .comment h3.username-comment{
+font-size: 0.825em;
+}

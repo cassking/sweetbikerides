@@ -23,6 +23,17 @@ const RouteReviewShow = (props) => {
         <li><span>Start location:</span> {props.start_location} | <span>End location:</span> {props.end_location}</li>
         <li><span>Notes on points of interest:</span> {props.points_interest}</li>
       </ul>
+      <p><img className="avatar" src="/images/cycle-avatar.png" alt="avatar" />
+        <span className="review-user-info">Created by: </span>
+        <span className="posted-by-username">{props.username}</span>
+        <br />
+        <span className="review-user-info">Little bit about myself: </span>
+        <span className="posted-by-username">{props.bio}</span>
+        <br />
+        <span className="review-user-info">Where I do most of my riding: </span>
+        <span className="posted-by-username">{props.location}</span>
+
+    </p>
     </div>
 
     </div>

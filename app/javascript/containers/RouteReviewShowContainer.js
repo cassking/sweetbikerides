@@ -22,7 +22,9 @@ class RouteReviewShowContainer extends Component {
     .then(response => {
       return response.json()
     }).then(data => {
+      console.log('data', data)
       this.setState({
+
         route_review: data['route_review'],
         comments: data['comments']
       })
@@ -47,6 +49,10 @@ class RouteReviewShowContainer extends Component {
           points_interest={this.state.route_review.points_interest}
           start_location={this.state.route_review.start_location}
           end_location={this.state.route_review.end_location}
+          bio={this.state.route_review.bio}
+          username={this.state.route_review.username}
+          location={this.state.route_review.location}
+          routeReviewId={this.state.route_review.id}
 
 
         />

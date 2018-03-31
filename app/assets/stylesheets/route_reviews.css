@@ -1,0 +1,26 @@
+.route-details {
+  list-style: none;
+  font-weight: 400;
+}
+.route-details li span,
+.route-review-show p .review-user-info {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 0.75em;
+  color:#8B0000;
+  margin-top:0;
+  padding-top:0;
+
+
+}
+.route-review-show p .posted-by-username{
+  margin-top: 0;
+  padding-top: 0;
+
+}
+.avatar {
+  float: left;
+  border: 1px dotted #8B0000;
+  padding: 8px;
+  margin: 10px 5px 0 0;
+}

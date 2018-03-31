@@ -13,6 +13,7 @@ class CommentsContainer extends Component {
       commentsPerPage: 10,
       if_admin: false,
       user_id: null
+
     }
     //will use THIS to get current user and signed in, but comments are
     // gotten via props from parent
@@ -52,6 +53,8 @@ class CommentsContainer extends Component {
    })
   }
   componentDidMount(){
+    let route_reviewId=this.props.routeReviewId;
+
      this.getCommentsDataSignedInCurrentUser()
    }
   getCommentsDataSignedInCurrentUser(){
@@ -148,7 +151,7 @@ class CommentsContainer extends Component {
       if (if_admin) {
         show = true
       } else if (user_id == comment.user_id ) {
-        
+
         show = true
       } else {}
 
@@ -203,7 +206,7 @@ class CommentsContainer extends Component {
         <ul>
           {renderComments}
         </ul>
-        <hr />
+
         <ul id="page-numbers">
 
           {renderPageNumbers}

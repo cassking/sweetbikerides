@@ -5,6 +5,7 @@ class RouteReviewSerializer < ActiveModel::Serializer
             :category,
             :mileage,
             :start_location,
-            :end_location
+            :end_location,
+            :user_id
 
 end

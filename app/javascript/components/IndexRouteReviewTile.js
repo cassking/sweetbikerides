@@ -11,14 +11,9 @@ const IndexRouteReviewTile = (props) => {
             <div className="route-information">
             <h3>  <Link to={`/route_reviews/${props.id}`}>{props.name}</Link></h3>
               <ul className="route-details">
-                <li>Desc: {props.description}</li>
-                <li>Mileage: {props.mileage}</li>
-                <li>Category: {props.category}</li>
-                {/* <li><MapTile
-                      coordinates={props.coordinates}
-                      center={props.center}
-                    />
-                </li> */}
+                <li><span>Description:</span> {props.description}</li>
+                <li><span>Mileage:</span>{props.mileage}</li>
+                <li><span>Category:</span> {props.category}</li>
 
               </ul>
             </div>

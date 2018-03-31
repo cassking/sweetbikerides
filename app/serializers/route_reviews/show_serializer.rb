@@ -9,7 +9,22 @@ class RouteReviews::ShowSerializer < RouteReviewSerializer
             :coordinates,
             :start_location,
             :end_location,
-            :difficulty
+            :difficulty,
+            :user_id,
+            :username,
+
+            :bio,
+            :location
+  def username
+    object.user.username
+  end
+  def bio
+    object.user.bio
+  end
+  def location
+    object.user.location
+  end
+
   has_many :comments, serializer: Comments::IndexSerializer
   has_one :category
 end

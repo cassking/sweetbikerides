@@ -3,16 +3,36 @@
 import ReactMapboxGl, { Layer, Feature, ZoomControl } from "react-mapbox-gl";
  import DropdownMenu from 'react-dd-menu';
 import { categoriesDifficulty } from '../Categories';
- import CommentForm from '../components/CommentForm'
+ import AddReviewForm from '../components/AddReviewForm'
  // const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ"
 
- class RouteReviewCommentsFormContainer extends Component {
+ class RouteReviewAddReviewFormContainer extends Component {
+//SAVE THIS FOR BUILDING OUT ROUTEREVIEWADDREVIEWFORMCONTAINER
+//     this.state = {
+//       // GeoJSON object to hold our measurement features
+//       category: '',
+//       categories: [],
+//       geojson: {
+//           "type": "FeatureCollection",
+//           "features": []
+//       },//end geojson obj
+//       // Used to draw a line between points
+//       linestring : {
+//           "type": "Feature",
+//           "geometry": {
+//               "type": "LineString",
+//               "coordinates": []
+//           }
+//       }//end linestring obj
+//     }//end state
+//
+//   }
 
   constructor(props) {
 
     super(props)
     this.state = {
-      comment: '',
+      review: '',
       errors: {},
       //THESE COME IN AS PROPS
       signed_in: false,
@@ -46,15 +66,15 @@ import { categoriesDifficulty } from '../Categories';
           body: this.state.comment
         }
       }
-      this.props.addNewComment(payload)
+      this.props.addNewReview(payload)
       this.setState({
-        comment: ''
+        review: ''
       })
     }
   }
 
   handleChange(e) {
-    this.setState({ comment: e.target.value })
+    this.setState({ review: e.target.value })
   }
 
   validateBodyChange(body) {
@@ -83,8 +103,8 @@ import { categoriesDifficulty } from '../Categories';
     //this logic not working, remove for now
     //while buildig out form
     if (this.props.signed_in) {
-      commentForm = <CommentForm
-                      comment={this.state.comment}
+      commentForm = <AddReviewForm
+                      body={this.state.review.body}
                       handleFormSubmit={this.handleFormSubmit}
                       handleChange={this.handleChange}
                       signed_in={this.props.signed_in}
@@ -94,8 +114,15 @@ import { categoriesDifficulty } from '../Categories';
     }
     else {
       commentForm =
-    <p>Sign in to comment</p>
-
+    // <p>Sign in to add a review</p>
+    <AddReviewForm
+                    body={this.state.review.body}
+                    handleFormSubmit={this.handleFormSubmit}
+                    handleChange={this.handleChange}
+                    signed_in={this.props.signed_in}
+                    if_admin={this.props.if_admin}
+                    user_id={this.props.user_id}
+                  />
     }
     return (
       <div>
@@ -106,4 +133,4 @@ import { categoriesDifficulty } from '../Categories';
   }
 }
 
-export default RouteReviewCommentsFormContainer;
+export default RouteReviewAddReviewFormContainer;
