@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 'react-router'
 import MapTile from './MapTile'
 import { categoriesDifficulty } from '../Categories';
-import { geoData } from '../Constants';
+// import { geoData } from '../Constants';
 
 const RouteReviewShow = (props) => {
+
   return(
     <div className="route-review-show">
       <h2>{props.name}</h2>

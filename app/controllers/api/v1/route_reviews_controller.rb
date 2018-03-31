@@ -15,9 +15,24 @@ class Api::V1::RouteReviewsController < ApplicationController
   end
 
   def create
-      @route_review = Route_Review.new(route_review_params)
+      # @route_review = Route_Review.new(route_review_params)
+      # if @route_review.save
+      #   render json: RouteReview.where(user: current_user)
+      # end
+
+      # binding.pry
+      @signed_in = user_signed_in?
+      @route_review =  Route_Review.new(route_review_params)
+      @route_review.user = current_user
+      # binding.pry
       if @route_review.save
-        render json: RouteReview.where(user: current_user)
+        @route_review_return = {
+          signed_in: @signed_in,
+          route_review: @route_review,
+          username:@route_review.user.id
+        }
+        # binding.pry
+        render json: { route_review: @@route_review_return, signed_in: @signed_in }
       end
   end
 

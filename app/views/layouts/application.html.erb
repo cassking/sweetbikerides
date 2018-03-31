@@ -4,8 +4,9 @@
   <title>Sweetbikerides</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
 
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700,900" rel="stylesheet">
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -56,5 +57,12 @@
   <footer>
       <strong><p>Questions?  Send me an email: <a href="mailto:sweetbikerides@gmail.com">
       sweetbikerides@gmail.com</a></p></strong>
-    </footer></body>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-leaflet/1.8.0/react-leaflet.min.js"></script>
+    <script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/1.3.1/gpx.min.js"></script>
+
+  </body>
 </html>
