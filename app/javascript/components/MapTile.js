@@ -27,8 +27,8 @@ const MapTile = (props) => {
         zoom={[8]}
         interactive='true'
         containerStyle={{
-          height: "50vh",
-          width: "50vw"
+          height: "90vh",
+          width: "90vw"
         }}
 
         center={props.coordinates}

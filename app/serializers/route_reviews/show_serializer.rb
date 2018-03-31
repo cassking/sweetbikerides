@@ -8,7 +8,8 @@ class RouteReviews::ShowSerializer < RouteReviewSerializer
             :points_interest,
             :coordinates,
             :start_location,
-            :end_location
+            :end_location,
+            :difficulty
   has_many :comments, serializer: Comments::IndexSerializer
   has_one :category
 end

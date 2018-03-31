@@ -39,6 +39,16 @@ class RouteReviewShowContainer extends Component {
         <RouteReviewShow
           key={this.state.route_review.id}
           id={this.state.route_review.id}
+          name={this.state.route_review.name}
+          description={this.state.route_review.description}
+          category={this.state.route_review.category}
+          mileage={this.state.route_review.mileage}
+          difficulty={this.state.route_review.difficulty}
+          points_interest={this.state.route_review.points_interest}
+          start_location={this.state.route_review.start_location}
+          end_location={this.state.route_review.end_location}
+
+
         />
       </div>
         <div className="route-review-show-comments">

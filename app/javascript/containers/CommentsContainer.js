@@ -148,6 +148,7 @@ class CommentsContainer extends Component {
       if (if_admin) {
         show = true
       } else if (user_id == comment.user_id ) {
+        
         show = true
       } else {}
 
@@ -158,6 +159,8 @@ class CommentsContainer extends Component {
             key={comment.id}
             body={comment.body}
             username={comment.username}
+            user_id={user_id}
+            comment_user_id={comment.user_id}
             route_reviewId={comment.route_review_id}
             commentId={comment.id}
             datePosted={comment.created_at}
@@ -200,7 +203,9 @@ class CommentsContainer extends Component {
         <ul>
           {renderComments}
         </ul>
+        <hr />
         <ul id="page-numbers">
+
           {renderPageNumbers}
         </ul>
       </div>

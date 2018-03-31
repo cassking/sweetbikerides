@@ -82,9 +82,11 @@ hr.elegant {
     overflow: visible; /* For IE */
     height: 30px;
     border-style: solid;
-    border-color: #ddd;
+    border-color: #8B0000;
     border-width: 1px 0 0 0;
     border-radius: 20px;
+    opacity: 0.8;
+
 }
 hr.elegant.-webkit-linear-gradient:before { /* Not really supposed to work, but does */
     display: block;
@@ -92,9 +94,10 @@ hr.elegant.-webkit-linear-gradient:before { /* Not really supposed to work, but 
     height: 30px;
     margin-top: -31px;
     border-style: solid;
-    border-color: #ddd;
+    border-color: #8B0000;
     border-width: 0 0 1px 0;
     border-radius: 20px;
+    opacity: 0.8;
 }
 
 a {
@@ -217,7 +220,7 @@ display:inline-block;
   display: inline-block;
 }
 
-.button, button {
+.button, button, input[type=submit] {
   font-size: 0.8em;
   text-transform: uppercase;
   border-radius: 10px;
@@ -231,11 +234,12 @@ display:inline-block;
   color: #fff;
   margin: 4px;
 }
-.back-button, .add-review, .delete-comment{
+.back-button, .add-review, .delete-comment,
+input[type=submit]{
   min-width: 125px;
 }
 
-.button:hover, button:hover {
+.button:hover, button:hover, input[type=submit]:hover {
   background-color: #ddd;
   color: #666;
 }
@@ -292,12 +296,13 @@ display:inline-block;
 #page-numbers .button {
   display: inline-block;
   box-sizing: content-box;
-  width: 15px;
-  line-height: 30px;
+  width: 10px;
+  line-height: 20px;
   background-color: #8B0000;
-  border-radius: 30px;
+  border-radius: 20px;
   margin-right: 4px;
-  padding: 8px 16px;
+  padding: 4px 8px;
+  font-size: 0.8em;
   font-family: "Titillium ",Arial,sans-serif;
   font-weight: 900;
   border: 3px solid #000;
@@ -311,7 +316,10 @@ img {
 input[type=text],input[type=email],textarea {
   font-family: "Titillium Web",Arial,sans-serif;
   font-size: 12px;
-  border-width: 1px
+  border-width: 1px;
+  border-color:#8B0000;
+  opacity: 0.5;
+  border-radius:10px;
 }
 
 input[type=text]:focus,input[type=email]:focus,textarea:focus {
@@ -326,4 +334,30 @@ input[type=password] {
 .route-details {
   list-style: none;
   font-weight: 400;
+}
+
+.comment-route-review div,
+.comment-route-review .comment,
+.comment-route-review div,
+.comment-route-review .comment h5.username-comment,
+.comment-route-review .comment p,
+.comment-route-review .comment .posted-at{
+  margin:0;
+  padding:0;
+}
+
+.comment-route-review .comment .posted-at{
+font-size: 0.7em;
+font-style:italic;
+}
+.comment-route-review .comment h3.username-comment{
+font-size: 0.825em;
+}
+
+.route-details li span {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 0.75em;
+  color:#8B0000;
+
 }

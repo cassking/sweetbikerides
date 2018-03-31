@@ -12,8 +12,10 @@ const CommentTile = (props) => {
   return(
     <div className="comment">
       <hr className="elegant" />
-      <h5 className="username-comment">{props.username} writes:</h5>
+      <h3 className="username-comment">{props.username} writes:</h3>
         <p>{props.body}</p>
+        {/* <h1>{props.user_id}
+        ....{props.comment_user_id}</h1> */}
         <p className="posted-at">Posted on: <span>
             {(new Date(datePosted)).toLocaleDateString() }
         {button}  </span></p>

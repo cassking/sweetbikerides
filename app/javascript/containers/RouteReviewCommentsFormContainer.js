@@ -4,7 +4,7 @@ import ReactMapboxGl, { Layer, Feature, ZoomControl } from "react-mapbox-gl";
  import DropdownMenu from 'react-dd-menu';
 import { categoriesDifficulty } from '../Categories';
  import CommentForm from '../components/CommentForm'
- const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ"
+ // const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ"
 
  class RouteReviewCommentsFormContainer extends Component {
 //SAVE THIS FOR BUILDING OUT ROUTEREVIEWADDREVIEWFORMCONTAINER
