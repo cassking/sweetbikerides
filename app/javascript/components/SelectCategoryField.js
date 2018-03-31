@@ -1,10 +1,16 @@
 import React from 'react';
-import { categoriesDifficulty } from '../Categories';
+const categories =['Asphalt',
+'Grass',
+'Gravel',
+'Dirt/Rocky',
+'Mixed/Asphalt/Gravel/Grass',
+'Dirt']
 
-const SelectField = props => {
-  let routeCategories = props.options.map(site =>{
+const SelectCategoryField = props => {
+let routeCategories=[]
+  routeCategories = categories.map( category =>{
     return (
-      <option key={site.id} value={site.id}>{site.name}</option>
+      <option key={category} value={category}>{category}</option>
     );
   })
 
@@ -16,7 +22,7 @@ const SelectField = props => {
             value={props.selectedOption}
             onChange={props.handlerFunction}
             className="form-control">
-            <option value=""></option>
+            <option value="selected"></option>
             {routeCategories}
           </select>
         </div>
@@ -24,4 +30,4 @@ const SelectField = props => {
   );
 }
 
-export default SelectField;
+export default SelectCategoryField;

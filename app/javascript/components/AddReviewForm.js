@@ -3,7 +3,8 @@ import { Link } from 'react-router';
 import NameTextField from './NameTextField';
 import DescriptionTextField from './DescriptionTextField';
 import GpxFileUploadField from './GpxFileUploadField';
-import SelectField from './SelectField';
+import SelectCategoryField from './SelectCategoryField';
+import SelectDifficultyField from './SelectDifficultyField';
 
 
 const AddReviewForm = props => {
@@ -31,9 +32,25 @@ const AddReviewForm = props => {
             id="descrption"
             handleChange={props.handleDescriptionChange}
           />
+          <SelectCategoryField
+          placeholder="Choose a category"
+          label="Category"
+          name="category"
+          className="category"
+          id="category"
+          handleChange={props.handleCategorySelectChange}
+        />
+        <SelectDifficultyField
+          placeholder="Choose a difficulty"
+        label="Difficulty"
+        name="difficulty"
+        className="difficulty"
+        id="difficulty"
+        handleChange={props.handleDifficultySelectChange}
+      />
           <GpxFileUploadField
             className="upload-file"
-            label="File upload"
+            label="GPX file upload"
             name="file"
             type="file"
             id="file"

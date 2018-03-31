@@ -25,6 +25,9 @@ import { categoriesDifficulty } from '../Categories';
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this)
+    this.handleCategorySelectChange = this.handleCategorySelectChange.bind(this)
+    this.handleDifficultySelectChange = this.handleDifficultySelectChange.bind(this)
+
   }
 
   validateSignedIn(signed_in) {
@@ -71,6 +74,12 @@ import { categoriesDifficulty } from '../Categories';
   handleNameChange(e){
 
   }
+  handleCategorySelectChange(e){
+
+  }
+  handleDifficultySelectChange(e){
+
+  }
 
   handleFileUpload(file){
       const url = 'http://example.com/file-upload';
@@ -106,11 +115,11 @@ import { categoriesDifficulty } from '../Categories';
       })
       errorDiv = <div className="callout alert">{errorItems}</div>
     }
-    let commentForm;
+    let addReviewForm;
     //this logic not working, remove for now
     //while buildig out form
     if (this.props.signed_in) {
-      commentForm = <AddReviewForm
+    addReviewForm = <AddReviewForm
                       body={this.state.review.body}
                       handleFormSubmit={this.handleFormSubmit}
                       handleChange={this.handleChange}
@@ -120,7 +129,7 @@ import { categoriesDifficulty } from '../Categories';
                     />
     }
     else {
-      commentForm =
+      addReviewForm=
     // <p>Sign in to add a review</p>
     <AddReviewForm
                     body={this.state.route_review.body}
@@ -134,7 +143,7 @@ import { categoriesDifficulty } from '../Categories';
     return (
       <div>
         {errorDiv}
-        {commentForm}
+        {addReviewForm}
       </div>
     )
   }

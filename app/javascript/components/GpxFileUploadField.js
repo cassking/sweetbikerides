@@ -4,9 +4,11 @@ const GpxUploadFileField = props => {
 
   return (
     <div className="form-group row">
-      <label className="col-3 col-form-label">{props.label}</label>
+      <label className="col-3 col-form-label">
+        <i className="fa fa-cloud-upload"></i> {props.label}</label>
+        <span></span>
         <div className="col-9">
-          <input ref={props.name}
+          <input
             id={props.id}
             type={props.type}
             name={props.name}

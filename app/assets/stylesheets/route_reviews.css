@@ -24,3 +24,8 @@
   padding: 8px;
   margin: 10px 5px 0 0;
 }
+
+.add-review-form form {
+  margin: 0 auto;
+  width: 80%;
+}

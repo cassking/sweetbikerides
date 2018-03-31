@@ -32,7 +32,6 @@ const MapTile = (props) => {
   return(
     <div className="mapTile">
       <Map
-        ref={(ref) => { this.map = ref; }}
         accessToken={accessToken}
         style="mapbox://styles/cassking/cjfachvt46kps2sob2eqponl6"
         zoom={props.zoomLevel}
