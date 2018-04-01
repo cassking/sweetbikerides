@@ -281,10 +281,12 @@ input[type=submit]{
   text-rendering: optimizeLegibility;
   text-align: center;
   font-stretch: extra-expanded;
+  background:none;
   background-size: cover;
   background-position: center;
   background-repeat: repeat-x;
-  background-image: url('/images/bike2.jpg');
+  background-image:  url('/images/bike2.jpg');
+  transition: background 1s linear;
   padding-bottom: 5px;
   margin-bottom: 5px;
   padding: 5px;

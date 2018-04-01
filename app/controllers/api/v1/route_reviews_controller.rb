@@ -29,10 +29,15 @@ class Api::V1::RouteReviewsController < ApplicationController
         @route_review_return = {
           signed_in: @signed_in,
           route_review: @route_review,
-          username:@route_review.user.id
+          username:@route_review.user.username,
+          user_id: @route_review.user.id,
+          current_user:  @route_review.user
         }
-        # binding.pry
-        render json: { route_review: @@route_review_return, signed_in: @signed_in }
+       binding.pry
+        render json: {
+          route_review: @route_review_return,
+          signed_in: @signed_in
+        }
       end
   end
 

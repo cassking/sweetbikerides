@@ -11,51 +11,56 @@ import MapInFormContainer from '../containers/MapInFormContainer'
 const AddReviewForm = props => {
   return(
     <div className="add-review-form">
-      <form onSubmit={this.handleFormSubmit} encType="multipart/form-data">
+      <form onSubmit={props.handleFormSubmit} encType="multipart/form-data">
         {/* {props.errorDiv} */}
         <div className="add-review-container">
-            <label><h3>Add a Route Review</h3></label>
+          <label><h3>Add a Route Review</h3></label>
+
+
             <NameTextField
-              content={props.name}
-              label="Name"
+              value={props.nameValue}
+              name="name"
+              label="Name Of Ride Route"
               name="name"
               type="text"
               className="name"
               id="name"
-              handleChange={props.handleNameChange}
+              handleNameChange={props.handleNameChange}
             />
             <DescriptionTextField
-            content={props.description}
-            label="Description"
+              value={props.descriptionValue}
+            label="Add A Description"
             name="description"
             type="text"
             className="description"
             id="descrption"
-            handleChange={props.handleDescriptionChange}
+            handleDescriptionChange={props.handleDescriptionChange}
           />
           <SelectCategoryField
-          placeholder="Choose a category"
-          label="Category"
-          name="category"
-          className="category"
-          id="category"
-          handleChange={props.handleCategorySelectChange}
-        />
+            value={props.categoryValue}
+            placeholder="Choose a category"
+            label="Choose A Category"
+            name="category"
+            className="category"
+            id="category"
+            handleCategorySelectChange={props.handleCategorySelectChange}
+          />
         <SelectDifficultyField
+          value={props.difficultyValue}
           placeholder="Choose a difficulty"
-        label="Difficulty"
-        name="difficulty"
-        className="difficulty"
-        id="difficulty"
-        handleChange={props.handleDifficultySelectChange}
-      />
+          label="Choose A Difficulty"
+          name="difficulty"
+          className="difficulty"
+          id="difficulty"
+          handleDifficultySelectChange={props.handleDifficultySelectChange}
+        />
           <GpxFileUploadField
             className="upload-file"
             label="GPX file upload"
             name="file"
             type="file"
             id="file"
-            handleChange={props.handleFileUploadChange}
+            handleFileUploadChange={props.handleFileUploadChange}
           />
           <MapInFormContainer
             height="80vh"
@@ -64,11 +69,8 @@ const AddReviewForm = props => {
             zoomLevel={4}
             animated={true}
             showUserLocation={true}
-            coordinates={this.coordinates}
+            coordinates={props.coordinates}
           />
-
-
-
           <div><input type="submit" value='Post your Route Review' /></div>
         </div>
       </form>

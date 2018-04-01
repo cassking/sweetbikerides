@@ -8,8 +8,5 @@ class RouteReview < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :category, presence: true
-  validates :map_start_latitude, presence: true
-  validates :map_start_longitude, presence: true
-  validates :map_end_latitude, presence: true
-  validates :map_end_longitude, presence: true
+  
 end

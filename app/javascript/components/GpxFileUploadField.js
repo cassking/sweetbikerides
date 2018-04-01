@@ -9,6 +9,7 @@ const GpxUploadFileField = props => {
         <span></span>
         <div className="col-9">
           <input
+            value={props.file}
             id={props.id}
             type={props.type}
             name={props.name}

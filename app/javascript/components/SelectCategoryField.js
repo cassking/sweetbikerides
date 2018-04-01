@@ -10,7 +10,7 @@ const SelectCategoryField = props => {
 let routeCategories=[]
   routeCategories = categories.map( category =>{
     return (
-      <option key={category} value={category}>{category}</option>
+      <option key={category} selected value={category} >{category}</option>
     );
   })
 
@@ -19,8 +19,8 @@ let routeCategories=[]
       <label className="col-3">{props.label}</label>
         <div className="col-9">
           <select name={props.name}
-            value={props.selectedOption}
-            onChange={props.handlerFunction}
+            value={props.value}
+            onChange={props.handleCategorySelectChange}
             className="form-control">
             <option value="selected"></option>
             {routeCategories}

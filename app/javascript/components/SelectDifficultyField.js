@@ -8,7 +8,7 @@ const SelectDifficultyField = props => {
 let routeDifficulties=[]
   routeDifficulties = difficulties.map( difficulty =>{
     return (
-      <option key={difficulty} value={difficulty}>{difficulty}</option>
+      <option key={difficulty} selected value={difficulty} selected>{difficulty}</option>
     );
   })
 
@@ -17,9 +17,8 @@ let routeDifficulties=[]
       <label className="col-3">{props.label}</label>
         <div className="col-9">
           <select name={props.name}
-
-            value={props.selectedOption}
-            onChange={props.handlerFunction}
+            value={props.value}
+            onChange={props.handleDifficultySelectChange}
             className="form-control">
             <option value="selected"></option>
             {routeDifficulties}

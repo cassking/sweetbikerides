@@ -6,11 +6,11 @@ const DescriptionTextField = props => {
       <label className="col-3">{props.label}</label>
         <div className="col-9">
           <input
+            value={props.value}
             id={props.id}
             name={props.name}
             type={props.type}
-            value={props.content}
-            onChange={props.handleChange}
+            onChange={props.handleDescriptionChange}
             className="form-control"
           />
         </div>

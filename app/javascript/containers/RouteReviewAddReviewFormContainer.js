@@ -71,7 +71,11 @@ const coordinates =[[8.67266, 50.11792],
       signed_in: false,
       if_admin: false,
       user_id: null,
-      file:null//for file upload
+      file:null,//for file upload
+      name:'',
+      description:'',
+      category:'',
+      difficulty: ''
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
@@ -106,6 +110,8 @@ const coordinates =[[8.67266, 50.11792],
         body: JSON.stringify(submission)
       }).then(response => {
           if (response.ok) {
+
+            alert("route review added!")
             return response
           } else {
             if (response.status == 401) {
@@ -119,7 +125,9 @@ const coordinates =[[8.67266, 50.11792],
         }
       )
       .then(response => response.json())
-      .then(body => browserHistory.push(`/route_reviews/${body.route_review.id}`))
+      .then(body => {
+      })
+      // .then(body => browserHistory.push(`/route_reviews/${body.route_review.id}`))
       .catch(error => console.error(`Error in fetch: ${error.message}`))
     }
 
@@ -134,10 +142,9 @@ const coordinates =[[8.67266, 50.11792],
           description: this.state.route_review.description,
           difficulty: this.state.route_review.difficulty,
           category: this.state.route_review.category
-
         }
       }
-      alert('paylod', payload)
+      console.log('paylod', payload)
 
       this.addNewRouteReview(payload)
       //clear for next
@@ -148,32 +155,45 @@ const coordinates =[[8.67266, 50.11792],
   }
 
   handleChange(e) {
+    console.log( e.target.value)
     this.setState({ route_review: e.target.value })
-    this.setState({file: e.target.files[0]})
-  }
-  handleDescriptionChange(e){
-
+    //this.setState({file: e.target.files[0]})save for later
   }
   handleNameChange(e){
+    console.log( e.target.value)
 
+    this.validateField(e.target.value, { name: 'Please give a name' } )
+    this.setState( { name: e.target.value } )
   }
-  handleCategorySelectChange(e){
+  handleDescriptionChange(e){
+    console.log( e.target.value)
 
+    this.validateField(e.target.value, { description: 'Please give a description' } )
+    this.setState( { description: e.target.value } )
+  }
+
+  handleCategorySelectChange(e){
+    console.log( e.target.value)
+
+    this.validateField(e.target.value, { category: 'Please  choose a category' } )
+    this.setState( { category: e.target.value } )
   }
   handleDifficultySelectChange(e){
+    console.log( e.target.value)
 
+    this.setState( { difficulty: e.target.value } )
   }
 
   handleFileUpload(file){
-      const url = 'http://example.com/file-upload';
-      const formData = new FormData();
-      formData.append('file',file)
-      const config = {
-          headers: {
-              'content-type': 'multipart/form-data'
-          }
-      }
-      return  post(url, formData,config)
+      // const url = 'http://example.com/file-upload';
+      // const formData = new FormData();
+      // formData.append('file',file)
+      // const config = {
+      //     headers: {
+      //         'content-type': 'multipart/form-data'
+      //     }
+      // }
+      // return  post(url, formData,config)
     }
 
   validateBodyChange(description) {
@@ -205,12 +225,8 @@ const coordinates =[[8.67266, 50.11792],
     addReviewForm =
     <div className="form-elements">
       <AddReviewForm
-        body={this.state.review.body}
-        handleFormSubmit={this.handleFormSubmit}
-        handleChange={this.handleChange}
-        signed_in={this.props.signed_in}
-        if_admin={this.props.if_admin}
-        user_id={this.props.user_id}
+        body={this.state.body}
+        note="FILL THIS IN LATER"
       />
 
     </div>
@@ -222,9 +238,17 @@ const coordinates =[[8.67266, 50.11792],
       <div className="form-elements">
 
     <AddReviewForm
-      body={this.state.route_review.body}
+      body={this.state.body}
+      nameValue={this.state.name}
+      descriptionValue={this.state.description}
+      categoryValue={this.state.category}
+      difficultyValue={this.state.difficulty}
       handleFormSubmit={this.handleFormSubmit}
-      handleChange={this.handleChange}
+      onChange={this.handleChange}
+      handleCategorySelectChange={this.handleCategorySelectChange}
+      handleDifficultySelectChange={this.handleDifficultySelectChange}
+      handleDescriptionChange={this.handleDescriptionChange}
+      handleNameChange={this.handleNameChange}
       signed_in={this.props.signed_in}
       if_admin={this.props.if_admin}
       user_id={this.props.user_id}
