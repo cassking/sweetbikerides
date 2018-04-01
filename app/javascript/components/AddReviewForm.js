@@ -5,6 +5,7 @@ import DescriptionTextField from './DescriptionTextField';
 import GpxFileUploadField from './GpxFileUploadField';
 import SelectCategoryField from './SelectCategoryField';
 import SelectDifficultyField from './SelectDifficultyField';
+import MapInFormContainer from '../containers/MapInFormContainer'
 
 
 const AddReviewForm = props => {
@@ -56,10 +57,19 @@ const AddReviewForm = props => {
             id="file"
             handleChange={props.handleFileUploadChange}
           />
+          <MapInFormContainer
+            height="80vh"
+            width="80vh"
+            center={[8.66903, 50.11259]}
+            zoomLevel={4}
+            animated={true}
+            showUserLocation={true}
+            coordinates={this.coordinates}
+          />
 
 
 
-          <input type="submit" value='Post your Route Review' />
+          <div><input type="submit" value='Post your Route Review' /></div>
         </div>
       </form>
     </div>
