@@ -84,8 +84,40 @@ const coordinates =[[8.67266, 50.11792],
     this.handleCategorySelectChange = this.handleCategorySelectChange.bind(this)
     this.handleDifficultySelectChange = this.handleDifficultySelectChange.bind(this)
     this.addNewRouteReview = this.addNewRouteReview.bind(this)
-
+    this.validateField=this.validateField.bind(this)
+    this.getSignedInData=this.getSignedInData.bind(this)
   }
+  componentDidMount(){
+     this.getSignedInData()
+   }
+
+   getSignedInData(){
+     debugger
+       fetch(`/api/v1/route_reviews`, {
+         credentials: 'same-origin',
+         headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json'
+         }
+       })
+       .then(response => {
+         if (response.ok) {
+          return response.json()
+         } else {
+           let errorMessage = `${response.status} (${response.statusText})`,
+           error = new Error(errorMessage);
+           throw(error);
+         }
+       })
+       .then(body => {
+         debugger
+         console.log('Signed in?:',this.state.signed_in, body["signed_in"])
+ //only setting the current user and signed in states here
+         this.setState({
+           signed_in: body.signed_in
+         })
+       })
+     }
 
   validateSignedIn(signed_in) {
     if (signed_in === false) {
@@ -110,8 +142,8 @@ const coordinates =[[8.67266, 50.11792],
         body: JSON.stringify(submission)
       }).then(response => {
           if (response.ok) {
-
             alert("route review added!")
+
             return response
           } else {
             if (response.status == 401) {
@@ -134,25 +166,41 @@ const coordinates =[[8.67266, 50.11792],
   handleFormSubmit(e) {
     e.preventDefault();
     if (
-      this.validateSignedIn(this.props.signed_in) && this.validateBodyChange(this.state.comment)
+      this.validateSignedIn(this.state.signed_in)
+      // fix this to state later
+      // this.validateSignedIn(this.state.signed_in)
     ) {
       let payload = {
         route_review: {
-          name:this.state.route_review.description,
-          description: this.state.route_review.description,
-          difficulty: this.state.route_review.difficulty,
-          category: this.state.route_review.category
+          name:this.state.name,
+          description: this.state.description,
+          difficulty: this.state.difficulty,
+          category: this.state.category
+          // signed_in: this.state.signed_in
         }
       }
       console.log('paylod', payload)
-
       this.addNewRouteReview(payload)
       //clear for next
-      this.setState({
-        route_review: ''
-      })
+      // this.setState({
+      //   route_review: ''
+      // })
     }
   }
+
+  validateField(text, error) {
+   if (text === '' || text === ' ') {
+     let newError = error
+     this.setState({ errors: Object.assign(this.state.errors, newError) })
+     return false
+   } else {
+     let errorState = this.state.errors
+     let errorKey = Object.keys(error)[0]
+     delete errorState[errorKey]
+     this.setState({ errors: errorState })
+     return true
+   }
+ }
 
   handleChange(e) {
     console.log( e.target.value)
@@ -161,7 +209,6 @@ const coordinates =[[8.67266, 50.11792],
   }
   handleNameChange(e){
     console.log( e.target.value)
-
     this.validateField(e.target.value, { name: 'Please give a name' } )
     this.setState( { name: e.target.value } )
   }
@@ -196,18 +243,7 @@ const coordinates =[[8.67266, 50.11792],
       // return  post(url, formData,config)
     }
 
-  validateBodyChange(description) {
-    if (description.trim() === '') {
-      let newError = { Body: 'Body may not be blank.' }
-      this.setState({ errors: Object.assign(this.state.errors, newError) })
-      return false
-    } else {
-      let errorState = this.state.errors
-      delete errorState.Body
-      this.setState({ errors: errorState })
-      return true
-    }
-  }
+
 
   render() {
     let errorDiv;
@@ -221,10 +257,12 @@ const coordinates =[[8.67266, 50.11792],
     let addReviewForm;
     //this logic not working, remove for now
     //while buildig out form
-    if (this.props.signed_in) {
+    if (this.state.signed_in) {
     addReviewForm =
     <div className="form-elements">
-      <AddReviewForm
+      <p>you are signed in</p>
+
+  <AddReviewForm
         body={this.state.body}
         note="FILL THIS IN LATER"
       />
@@ -234,8 +272,9 @@ const coordinates =[[8.67266, 50.11792],
     else {
       addReviewForm=
 
-    // <p>Sign in to add a review</p>
       <div className="form-elements">
+        <p>FIX THIS BUG, CANNOT SEE FORM IF SIGNEDIN
+          SEEING THIS WHEN SIGNED IN Sign in to add a review</p>
 
     <AddReviewForm
       body={this.state.body}
@@ -249,9 +288,9 @@ const coordinates =[[8.67266, 50.11792],
       handleDifficultySelectChange={this.handleDifficultySelectChange}
       handleDescriptionChange={this.handleDescriptionChange}
       handleNameChange={this.handleNameChange}
-      signed_in={this.props.signed_in}
-      if_admin={this.props.if_admin}
-      user_id={this.props.user_id}
+      signed_in={this.state.signed_in}
+      if_admin={this.state.if_admin}
+      user_id={this.state.user_id}
     />
 
 

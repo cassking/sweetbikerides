@@ -10,7 +10,7 @@ const SelectCategoryField = props => {
 let routeCategories=[]
   routeCategories = categories.map( category =>{
     return (
-      <option key={category} selected value={category} >{category}</option>
+      <option key={category} defaultValue value={category} >{category}</option>
     );
   })
 

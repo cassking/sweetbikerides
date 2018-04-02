@@ -4,7 +4,6 @@ import ReactMapboxGl, { Layer, Feature, ZoomControl } from "react-mapbox-gl";
 import { geoData } from '../Constants';
 import DropdownMenu from 'react-dd-menu';
 import IndexRouteReviewTile from '../components/IndexRouteReviewTile'
-
 class IndexContainer extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +59,9 @@ class IndexContainer extends Component {
           mileage={rr.mileage}
           category={rr.category}
           coordinates={rr.coordinates}
-        /></div>);
+        />
+
+    </div>);
     });
 
     // Logic for displaying page numbers

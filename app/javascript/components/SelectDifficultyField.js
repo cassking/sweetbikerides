@@ -8,7 +8,7 @@ const SelectDifficultyField = props => {
 let routeDifficulties=[]
   routeDifficulties = difficulties.map( difficulty =>{
     return (
-      <option key={difficulty} selected value={difficulty} selected>{difficulty}</option>
+      <option key={difficulty} defaultValue value={difficulty} >{difficulty}</option>
     );
   })
 
