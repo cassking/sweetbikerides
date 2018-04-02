@@ -67,7 +67,6 @@ const coordinates =[[8.67266, 50.11792],
     this.state = {
       route_review: '',
       errors: {},
-      //THESE COME IN AS PROPS
       signed_in: false,
       if_admin: false,
       user_id: null,
@@ -92,7 +91,6 @@ const coordinates =[[8.67266, 50.11792],
    }
 
    getSignedInData(){
-     debugger
        fetch(`/api/v1/route_reviews`, {
          credentials: 'same-origin',
          headers: {
@@ -110,11 +108,8 @@ const coordinates =[[8.67266, 50.11792],
          }
        })
        .then(body => {
-         debugger
-         console.log('Signed in?:',this.state.signed_in, body["signed_in"])
- //only setting the current user and signed in states here
          this.setState({
-           signed_in: body.signed_in
+           signed_in: body.route_reviews[0]["signed_in"]
          })
        })
      }
@@ -143,11 +138,10 @@ const coordinates =[[8.67266, 50.11792],
       }).then(response => {
           if (response.ok) {
             alert("route review added!")
-
             return response
           } else {
             if (response.status == 401) {
-              alert('You must be signed in to do that')
+              // alert('You must be signed in to do that')
             } else {
             let errorMessage = `${response.status}`
             error = new Error(errorMessage)
@@ -167,8 +161,6 @@ const coordinates =[[8.67266, 50.11792],
     e.preventDefault();
     if (
       this.validateSignedIn(this.state.signed_in)
-      // fix this to state later
-      // this.validateSignedIn(this.state.signed_in)
     ) {
       let payload = {
         route_review: {
@@ -176,7 +168,6 @@ const coordinates =[[8.67266, 50.11792],
           description: this.state.description,
           difficulty: this.state.difficulty,
           category: this.state.category
-          // signed_in: this.state.signed_in
         }
       }
       console.log('paylod', payload)
@@ -203,31 +194,23 @@ const coordinates =[[8.67266, 50.11792],
  }
 
   handleChange(e) {
-    console.log( e.target.value)
-    this.setState({ route_review: e.target.value })
+  this.setState({ route_review: e.target.value })
     //this.setState({file: e.target.files[0]})save for later
   }
   handleNameChange(e){
-    console.log( e.target.value)
     this.validateField(e.target.value, { name: 'Please give a name' } )
     this.setState( { name: e.target.value } )
   }
   handleDescriptionChange(e){
-    console.log( e.target.value)
-
     this.validateField(e.target.value, { description: 'Please give a description' } )
     this.setState( { description: e.target.value } )
   }
 
   handleCategorySelectChange(e){
-    console.log( e.target.value)
-
     this.validateField(e.target.value, { category: 'Please  choose a category' } )
     this.setState( { category: e.target.value } )
   }
   handleDifficultySelectChange(e){
-    console.log( e.target.value)
-
     this.setState( { difficulty: e.target.value } )
   }
 
@@ -255,47 +238,33 @@ const coordinates =[[8.67266, 50.11792],
       errorDiv = <div className="callout alert">{errorItems}</div>
     }
     let addReviewForm;
-    //this logic not working, remove for now
-    //while buildig out form
     if (this.state.signed_in) {
     addReviewForm =
     <div className="form-elements">
-      <p>you are signed in</p>
-
-  <AddReviewForm
+      <p>Hello, you are now  signed in and can add your ride!</p>
+      <AddReviewForm
         body={this.state.body}
-        note="FILL THIS IN LATER"
+        nameValue={this.state.name}
+        descriptionValue={this.state.description}
+        categoryValue={this.state.category}
+        difficultyValue={this.state.difficulty}
+        handleFormSubmit={this.handleFormSubmit}
+        onChange={this.handleChange}
+        handleCategorySelectChange={this.handleCategorySelectChange}
+        handleDifficultySelectChange={this.handleDifficultySelectChange}
+        handleDescriptionChange={this.handleDescriptionChange}
+        handleNameChange={this.handleNameChange}
+        signed_in={this.state.signed_in}
+        if_admin={this.state.if_admin}
+        user_id={this.state.user_id}
       />
-
     </div>
     }
     else {
       addReviewForm=
-
       <div className="form-elements">
-        <p>FIX THIS BUG, CANNOT SEE FORM IF SIGNEDIN
-          SEEING THIS WHEN SIGNED IN Sign in to add a review</p>
-
-    <AddReviewForm
-      body={this.state.body}
-      nameValue={this.state.name}
-      descriptionValue={this.state.description}
-      categoryValue={this.state.category}
-      difficultyValue={this.state.difficulty}
-      handleFormSubmit={this.handleFormSubmit}
-      onChange={this.handleChange}
-      handleCategorySelectChange={this.handleCategorySelectChange}
-      handleDifficultySelectChange={this.handleDifficultySelectChange}
-      handleDescriptionChange={this.handleDescriptionChange}
-      handleNameChange={this.handleNameChange}
-      signed_in={this.state.signed_in}
-      if_admin={this.state.if_admin}
-      user_id={this.state.user_id}
-    />
-
-
+        <p>Please, sign in to add a review.</p>
       </div>
-
     }
     return (
       <div>

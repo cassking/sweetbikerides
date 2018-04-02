@@ -2,7 +2,7 @@ class Api::V1::RouteReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    binding.pry
+    # binding.pry
     @route_reviews = RouteReview.all
     render json: @route_reviews
   end
@@ -25,7 +25,7 @@ class Api::V1::RouteReviewsController < ApplicationController
         @route_review =  RouteReview.new(route_review_params)
         @route_review.user = current_user
 
-   binding.pry
+        # binding.pry
         if @route_review.save
           @route_review_return = {
             signed_in: @signed_in,
@@ -38,16 +38,6 @@ class Api::V1::RouteReviewsController < ApplicationController
           }
         end
       end
-      # if @route_review.save
-      #   @route_review_return = {
-      #     signed_in: @signed_in,
-      #     route_review: @route_review
-      #   }
-      #  binding.pry
-      #   render json: {
-      #     route_review: @route_review_return
-      #   }
-      # end
   end
 
   private

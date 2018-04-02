@@ -15,8 +15,6 @@ class CommentsContainer extends Component {
       user_id: null
 
     }
-    //will use THIS to get current user and signed in, but comments are
-    // gotten via props from parent
     this.getCommentsDataSignedInCurrentUser = this.getCommentsDataSignedInCurrentUser.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.addNewComment = this.addNewComment.bind(this);
@@ -45,10 +43,11 @@ class CommentsContainer extends Component {
    })
    .then(response => response.json())
    .then(body => {
-
+     console.log('COMMENT deleted', body['comment'])
      this.setState({
        signed_in: body['signed_in'],
-       comments: body['comment']['comments']
+       comments: this.props.comments
+       // comments: body['comment']
      })
    })
   }
@@ -78,7 +77,7 @@ class CommentsContainer extends Component {
         }
       })
       .then(body => {
-        console.log('body, singed in?:',body, this.state.signed_in)
+        // console.log('body, singed in?:',body, this.state.signed_in)
 
 //only setting the current user and signed in states here
         this.setState({
@@ -111,10 +110,12 @@ class CommentsContainer extends Component {
     })
     .then(response => response.json())
     .then(body => {
-      console.log(body)
-      let updatedComments = this.state.comments;
+      console.log('commentd added and all comments: ', body['comment'],
+this.props.comments)
+      let updatedComments = body;
       this.setState({
         comments: updatedComments
+
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));

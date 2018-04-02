@@ -34,6 +34,7 @@ h1,h2,h3,h4 {
 }
 h3#homepage {
   display:inline-block;
+  margin-bottom: -5px;
 }
 hr.round {
   height: 30px;
@@ -131,7 +132,7 @@ footer  p {
 }
 .navigation {
   margin: 0 auto;
-  width: 80%;
+  width: 60%;
   border: 1px solid #8B0000;
   background: #eee;
   border-radius: 6px;
