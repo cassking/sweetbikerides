@@ -81,9 +81,7 @@ class RouteReviewShowContainer extends Component {
     .then(response => {
       return response.json()
     }).then(data => {
-      console.log('data', data)
       this.setState({
-
         route_review: data['route_review'],
         comments: data['comments']
       })

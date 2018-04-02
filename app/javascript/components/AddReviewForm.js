@@ -63,13 +63,13 @@ const AddReviewForm = props => {
             handleFileUploadChange={props.handleFileUploadChange}
           />
           <MapInFormContainer
-            height="80vh"
-            width="80vh"
-            center={[8.66903, 50.11259]}
-            zoomLevel={4}
-            animated={true}
-            showUserLocation={true}
-            coordinates={props.coordinates}
+            // height="80vh"
+            // width="80vh"
+            // center={[8.66903, 50.11259]}
+            // zoomLevel={4}
+            // animated={true}
+            // showUserLocation={true}
+            // coordinates={props.coordinates}
           />
           <div><input type="submit" value='Post your Route Review' /></div>
         </div>

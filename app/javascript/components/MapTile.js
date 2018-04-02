@@ -3,8 +3,6 @@ import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 're
 import ReactMapboxGl, { Layer, Feature, ZoomControl, GeolocateControl } from "react-mapbox-gl";
 import { geoData } from '../Constants';
 const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ"
-const gpxfile = 'https://openlayers.org/en/v4.6.5/examples/data/gpx/fells_loop.gpx'
-let file = gpxfile;
 
 const Map = ReactMapboxGl({
   accessToken: accessToken

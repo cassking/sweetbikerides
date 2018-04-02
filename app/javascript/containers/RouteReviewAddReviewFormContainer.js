@@ -170,7 +170,7 @@ const coordinates =[[8.67266, 50.11792],
           category: this.state.category
         }
       }
-      console.log('paylod', payload)
+      console.log('payload', payload)
       this.addNewRouteReview(payload)
       //clear for next
       // this.setState({
