@@ -55,7 +55,7 @@ this.handleLocationFound =this.handleLocationFound.bind(this)
         onClick={this.handleClick}
         onLocationfound={this.handleLocationFound}
         ref="map"
-        zoom={13}>
+        zoom={[13]}>
         <TileLayer
           attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
