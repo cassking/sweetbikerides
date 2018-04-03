@@ -111,7 +111,7 @@ class RouteReviewShowContainer extends Component {
           username={this.state.route_review.username}
           location={this.state.route_review.location}
           routeReviewId={this.state.route_review.id}
-          center={[8.66903, 50.11259]}
+          center={[-75.163685, 39.952345]}
           zoomLevel={4}
           animated={true}
           showUserLocation={true}

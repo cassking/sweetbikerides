@@ -1,0 +1,150 @@
+import React from 'react';
+import ReactMapboxGl, {ScaleControl,
+  ZoomControl,
+  RotationControl,
+  Layer,
+  Feature } from "react-mapbox-gl";
+const AllShapesPolygonCoords = [
+  [
+    [-0.13235092163085938, 51.518250335096376],
+    [-0.1174163818359375, 51.52433860667918],
+    [-0.10591506958007812, 51.51974577545329],
+    [-0.10831832885742188, 51.51429786349477],
+    [-0.12531280517578122, 51.51429786349477],
+    [-0.13200759887695312, 51.517823057404094]
+  ]
+];
+// const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ";
+// const style = "mapbox://styles/mapbox/streets-v9";
+const { token } = require('./config.json');
+const route: Route = require('./route.json');
+const mapData = require('./allShapesStyle.json');
+const mappedRoute = route.points.map(point => [point.lat, point.lng]);
+
+const Map = ReactMapboxGl({ accessToken: token });
+const mapStyle = {
+  flex: 1
+};
+
+const lineLayout = {
+  'line-cap': 'round',
+  'line-join': 'round'
+};
+
+const linePaint = {
+  'line-color': '#4790E5',
+  'line-width': 12
+};
+
+const polygonPaint = {
+  'fill-color': '#6F788A',
+  'fill-opacity': 0.7
+};
+
+const multiPolygonPaint = {
+  'fill-color': '#3bb2d0',
+  'fill-opacity': 0.5
+};
+export interface State {
+  center: number[];
+  circleRadius: number;
+  routeIndex: number;
+  zoom: [number];
+}
+
+export interface Props {
+  // tslint:disable-next-line:no-any
+  onStyleLoad?: (map: any) => any;
+}
+// const Map = ReactMapboxGl({
+//   accessToken
+// });
+// const containerStyle = {
+//   height: '70vh',
+//   width: '70vw'
+// };
+// const s = "mapbox://styles/mapbox/outdoors-v10"
+const center = [-75.163685, 39.952345]
+
+
+interface Point {
+  lat: number;
+  lng: number;
+}
+interface Route {
+  // tslint:disable-next-line:no-any
+  [key: string]: any;
+  points: Point[];
+}
+
+class MapInFormContainer extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      center: [-0.120736, 51.5118219],
+      zoom: [8],
+      circleRadius: 30,
+      routeIndex: 0
+
+    }
+  }
+  componentDidMount() {
+    console.log(mappedRoute[0], this.state.routeIndex)
+        this.setState({
+          center: mappedRoute[0],
+          zoom: [10],
+          circleRadius: 10,
+          routeIndex: this.state.routeIndex + 1
+        });
+  }
+
+
+
+  getCirclePaint = () => ({
+    'circle-radius': this.state.circleRadius,
+    'circle-color': '#E54E52',
+    'circle-opacity': 0.8
+  });
+
+  onStyleLoad = (map: any) => {
+    const { onStyleLoad } = this.props;
+    return onStyleLoad && onStyleLoad(map);
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>map below</h1>
+      <Map
+        style={mapData}
+        containerStyle={mapStyle}
+        // tslint:disable-next-line:jsx-no-lambda
+        onStyleLoad={this.onStyleLoad}
+        center={this.state.center}
+        zoom={this.state.zoom}
+      >
+        {/* Controls */}
+        <ScaleControl />
+        <ZoomControl />
+        <RotationControl style={{ top: 80 }} />
+
+        {/* Line example */}
+        <Layer type="line" layout={lineLayout} paint={linePaint}>
+          <Feature coordinates={mappedRoute} />
+        </Layer>
+
+        {/* Circle example */}
+        <Layer type="circle" paint={this.getCirclePaint()}>
+          <Feature coordinates={mappedRoute[this.state.routeIndex]} />
+        </Layer>
+
+        {/* Polygon example */}
+        <Layer type="fill" paint={polygonPaint}>
+          <Feature coordinates={AllShapesPolygonCoords} />
+        </Layer>
+      </Map>
+    </div>
+    );
+  }
+}
+export default MapInFormContainer;

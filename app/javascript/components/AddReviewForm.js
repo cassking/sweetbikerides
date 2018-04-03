@@ -27,6 +27,21 @@ const AddReviewForm = props => {
               id="name"
               handleNameChange={props.handleNameChange}
             />
+            <MapInFormContainer
+              // height={props.height}
+              // width={props.width}
+              // center={props.center}
+              // zoomLevel={props.zommLevel}
+              // animated={props.animated}
+              // showUserLocation={props.showUserLocation}
+              // //style={props.style}>
+              //
+              //   type={props.type}
+              //   id={props.id}
+              //   layout={props.layout}
+
+
+            />
             <DescriptionTextField
               value={props.descriptionValue}
             label="Add A Description"
@@ -62,15 +77,7 @@ const AddReviewForm = props => {
             id="file"
             handleFileUploadChange={props.handleFileUploadChange}
           />
-          <MapInFormContainer
-            // height="80vh"
-            // width="80vh"
-            // center={[8.66903, 50.11259]}
-            // zoomLevel={4}
-            // animated={true}
-            // showUserLocation={true}
-            // coordinates={props.coordinates}
-          />
+
           <div><input type="submit" value='Post your Route Review' /></div>
         </div>
       </form>
