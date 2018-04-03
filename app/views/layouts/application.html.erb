@@ -6,8 +6,10 @@
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700,900" rel="stylesheet">
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
-    <%= javascript_include_tag "vendor/modernizr" %>
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+<%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_pack_tag    'application' %>
 
   <%= csrf_meta_tags %>

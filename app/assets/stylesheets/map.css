@@ -1,20 +1,12 @@
-.distance-container {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+#info {
+font-size: 12px;
+  position:relative;
+  color:#fff;
+  background-color:blue;
   z-index: 1;
+  border-radius: 6px;
 }
 
-.distance-container > * {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  font-size: 11px;
-  line-height: 18px;
-  display: block;
-  margin: 0;
-  padding: 5px 10px;
-  border-radius: 3px;
-}
 .mapTile,.mapboxgl-map{
   margin: 0 auto;
 }
