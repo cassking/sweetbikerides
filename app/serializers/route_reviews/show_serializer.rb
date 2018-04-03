@@ -12,7 +12,6 @@ class RouteReviews::ShowSerializer < RouteReviewSerializer
             :difficulty,
             :user_id,
             :username,
-            :coordinates,
             :bio,
             :location
   def username

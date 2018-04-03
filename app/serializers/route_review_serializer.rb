@@ -9,7 +9,12 @@ class RouteReviewSerializer < ActiveModel::Serializer
             :user,
             :user_id,
             :username,
-            :signed_in
+            :signed_in,
+            :map_start_latitude,
+            :map_end_latitude,
+            :map_start_longitude,
+            :map_end_longitude,
+            :coordinates
 def username
   object.user.username
 end

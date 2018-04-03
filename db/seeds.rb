@@ -38,19 +38,19 @@ rr2 = RouteReview.create!(user_id:u2.id, name: "The Madonnas valley ride", milea
 description: "This nice onehills and hills traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat2.name, difficulty: "Very Hilly",
 points_interest: "7-Eleven for food stops, The Hillside Cafe, Bike Stop bike shop",
 start_location: "Wissahickon", end_location: "North Philly",
-map_start_latitude: -101.744384, map_start_longitude:39.32155, map_end_latitude:-101.552124, map_end_longitude: 39.330048)
+map_start_latitude: -84.518399, map_start_longitude:39.134126, map_end_latitude:-84.511987, map_end_longitude: 39.102638)
 
 rr3 = RouteReview.create!(user_id: u3.id, name: "The  loopdaloop ride", mileage: 120.6, coordinates: [],
 description: "This is fun interesting, good stops traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat3.name, difficulty: "Rolling Hills",
 points_interest: "Wawa, Whole Foods on way, The Petts coffee shop, Rendassy bike shop",
 start_location: "Pennypack park", end_location: "Center City Philly",
-map_start_latitude: -101.744384, map_start_longitude:39.32155, map_end_latitude:-101.552124, map_end_longitude: 39.330048)
+map_start_latitude: -84.518399, map_start_longitude:39.134126, map_end_latitude:-84.511987, map_end_longitude: 39.102638)
 
 
 rr4 = RouteReview.create!(user_id: u3.id, name: "Fountain ride", mileage: 40.6, coordinates: [],
   points_interest: "Wawa, 7-eleven on way, check out the entrance to Floral Gradens park",
 description: "This is a hard grinder, 90 miles of gravel and hills traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat4.name, difficulty: "Rolling Hills",
-map_start_latitude: -101.744384, map_start_longitude:39.32155, map_end_latitude:-101.552124, map_end_longitude: 39.330048)
+map_start_latitude: -84.518399, map_start_longitude:39.134126, map_end_latitude:-84.511987, map_end_longitude: 39.102638)
 
 c1= Comment.create!(user_id:u1.id, route_review_id:rr4.id, body:"thanks for posting this, it was intese and fun")
 c2= Comment.create!(user_id:u2.id, route_review_id:rr4.id, body:"this was a cool ride. thank you")
