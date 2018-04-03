@@ -28,17 +28,7 @@ const AddReviewForm = props => {
               handleNameChange={props.handleNameChange}
             />
             <MapInFormContainer
-              // height={props.height}
-              // width={props.width}
-              // center={props.center}
-              // zoomLevel={props.zommLevel}
-              // animated={props.animated}
-              // showUserLocation={props.showUserLocation}
-              // //style={props.style}>
-              //
-              //   type={props.type}
-              //   id={props.id}
-              //   layout={props.layout}
+              
 
 
             />

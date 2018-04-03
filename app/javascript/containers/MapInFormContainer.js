@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMapboxGl, {ScaleControl,ZoomControl,RotationControl,Layer,Feature } from "react-mapbox-gl";
 const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ";
+import mapboxgl from 'mapbox-gl'
 
 const style= "mapbox://styles/mapbox/outdoors-v10"
 const Map = ReactMapboxGl({
@@ -27,6 +28,8 @@ class MapInFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      lng: 5,
+    lat: 34,
       center: center, // starting position
       zoom: 9,
       map_start_latitude:0,
@@ -37,17 +40,56 @@ class MapInFormContainer extends React.Component {
     this.getCoordinatesOnClick=this.getCoordinatesOnClick.bind(this)
   }
 
+  componentDidMount() {
+      const { lng, lat, zoom } = this.state;
+mapboxgl.accessToken = accessToken;
 
+      const map = new mapboxgl.Map({
+        container: this.mapContainer,
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [lng, lat],
+        zoom
+      });
+
+      map.on('click', () => {
+        const { lng, lat } = map.getCenter();
+
+        this.setState({
+          lng: lng.toFixed(4),
+          lat: lat.toFixed(4),
+          zoom: map.getZoom().toFixed(2)
+        });
+      });
+
+      map.addControl(new mapboxgl.GeolocateControl({
+        positionOptions: {
+        enableHighAccuracy: true
+      },
+      trackUserLocation: true
+    }));
+
+    map.addControl(new MapboxDirections({
+    accessToken: accessToken
+  }), 'top-left');
+    }
 getCoordinatesOnClick(map, e){
   document.getElementById('info').innerHTML =
-  JSON.stringify(e.lngLat);
+    JSON.stringify(e.lngLat["lat"]) + '<br />' +
+  JSON.stringify(e.lngLat["lng"]);
 }
 
 
   render() {
+    const { lng, lat, zoom } = this.state;
+    const dStyle = {
+      position: 'relative',
+      width: '400px',
+      height: '400px'
+    };
     return (
-      <div><pre id='info'></pre>
-      <Map
+      <div>
+        <pre id='info'></pre>
+      {/* <Map
         onClick={this.getCoordinatesOnClick}
         // onMouseOver={this.getCoordinatesOnClick}
         zoomLevel={this.state.zoomLevel}
@@ -59,8 +101,11 @@ getCoordinatesOnClick(map, e){
       <Layer  type="line" layout={lineLayout} paint={linePaint}>
         <Feature coordinates={this.state.mappedRoute}  />
       </Layer>
-</Map>
-</div>
+</Map> */}
+         <span>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</span>
+
+      <div ref={el => this.mapContainer = el}  /></div>
+
 
     );
   }
