@@ -9,7 +9,8 @@ class RouteReviews::IndexSerializer < RouteReviewSerializer
             :coordinates,
             :start_location,
             :end_location,
-            :difficulty
+            :difficulty,
+              :coordinates,
 
 
 
