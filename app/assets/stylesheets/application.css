@@ -144,6 +144,11 @@ footer  p {
   position: relative;
   top: -50px;
 }
+.outer .middle .inner {
+  max-width: 90%;
+  margin: 0 auto
+}
+
 .users-panel {
   width: 100%;
 }
