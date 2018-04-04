@@ -27,11 +27,6 @@ const AddReviewForm = props => {
               id="name"
               handleNameChange={props.handleNameChange}
             />
-            <MapInFormContainer
-              
-
-
-            />
             <DescriptionTextField
               value={props.descriptionValue}
             label="Add A Description"
@@ -41,6 +36,11 @@ const AddReviewForm = props => {
             id="descrption"
             handleDescriptionChange={props.handleDescriptionChange}
           />
+            <h4>Add coordinates for your route using the map below</h4>
+            <MapInFormContainer
+
+            />
+
           <SelectCategoryField
             value={props.categoryValue}
             placeholder="Choose a category"

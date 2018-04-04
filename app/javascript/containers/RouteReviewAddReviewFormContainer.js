@@ -22,7 +22,6 @@ const coordinates =[
       signed_in: false,
       if_admin: false,
       user_id: null,
-      file:null,//for file upload
       name:'',
       description:'',
       category:'',
@@ -31,7 +30,6 @@ const coordinates =[
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleFileUpload = this.handleFileUpload.bind(this)
     this.handleCategorySelectChange = this.handleCategorySelectChange.bind(this)
     this.handleDifficultySelectChange = this.handleDifficultySelectChange.bind(this)
     this.addNewRouteReview = this.addNewRouteReview.bind(this)
@@ -165,18 +163,6 @@ const coordinates =[
   handleDifficultySelectChange(e){
     this.setState( { difficulty: e.target.value } )
   }
-
-  handleFileUpload(file){
-      // const url = 'http://example.com/file-upload';
-      // const formData = new FormData();
-      // formData.append('file',file)
-      // const config = {
-      //     headers: {
-      //         'content-type': 'multipart/form-data'
-      //     }
-      // }
-      // return  post(url, formData,config)
-    }
 
 
 

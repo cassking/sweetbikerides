@@ -18,11 +18,12 @@ border: 1px solid #eee;
 
 .add-review-form .add-review-container .mapboxgl-map {
   position: relative;
+  
   top:10px;
-  left:10px;
-  height: 80vh;
+  left:-20px;
+  height: 100vh;
   width: 80vw;
-  border: 1px solid #8B0000;
+  border: 2px solid #eee;
 margin:10px;
 padding:5px;
 

@@ -28,10 +28,10 @@ class MapInFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lng: 5,
-    lat: 34,
+      lng: -75.163685,
+      lat: 39.952345,
       center: center, // starting position
-      zoom: 9,
+      zoom: 12,
       map_start_latitude:0,
       map_start_longitude:0,
       map_start_latitude:0,
@@ -42,7 +42,7 @@ class MapInFormContainer extends React.Component {
 
   componentDidMount() {
       const { lng, lat, zoom } = this.state;
-mapboxgl.accessToken = accessToken;
+      mapboxgl.accessToken = accessToken;
 
       const map = new mapboxgl.Map({
         container: this.mapContainer,
@@ -50,18 +50,27 @@ mapboxgl.accessToken = accessToken;
         center: [lng, lat],
         zoom
       });
-
+      map.on('click', function (e) {
+          document.getElementById('info').innerHTML =
+              // e.point is the x, y coordinates of the mousemove event relative
+              // to the top-left corner of the map
+              JSON.stringify(e.point) + '<br />' +
+              // e.lngLat is the longitude, latitude geographical position of the event
+              JSON.stringify(e.lngLat);
+      });
       map.on('click', () => {
-        const { lng, lat } = map.getCenter();
+        // const { lng, lat } = map.getCenter();
+        const{ map_start_latitude, map_start_longitude} = map.getCenter();
+        alert(  this.state.map_start_latitude,this.state.  map_start_longitude )
 
         this.setState({
-          lng: lng.toFixed(4),
-          lat: lat.toFixed(4),
+          map_start_latitude: lng.toFixed(4),
+          map_start_longitude: lat.toFixed(4),
           zoom: map.getZoom().toFixed(2)
         });
       });
 
-      map.addControl(new mapboxgl.GeolocateControl({
+    map.addControl(new mapboxgl.GeolocateControl({
         positionOptions: {
         enableHighAccuracy: true
       },
@@ -69,8 +78,8 @@ mapboxgl.accessToken = accessToken;
     }));
 
     map.addControl(new MapboxDirections({
-    accessToken: accessToken
-  }), 'top-left');
+      accessToken: accessToken
+      }), 'top-left');
     }
 getCoordinatesOnClick(map, e){
   document.getElementById('info').innerHTML =
@@ -89,7 +98,7 @@ getCoordinatesOnClick(map, e){
     return (
       <div>
         <pre id='info'></pre>
-      {/* <Map
+       {/* <Map
         onClick={this.getCoordinatesOnClick}
         // onMouseOver={this.getCoordinatesOnClick}
         zoomLevel={this.state.zoomLevel}
@@ -101,10 +110,10 @@ getCoordinatesOnClick(map, e){
       <Layer  type="line" layout={lineLayout} paint={linePaint}>
         <Feature coordinates={this.state.mappedRoute}  />
       </Layer>
-</Map> */}
+</Map>  */}
          <span>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</span>
 
-      <div ref={el => this.mapContainer = el}  /></div>
+      <div ref={Map => this.mapContainer = Map}  /></div>
 
 
     );
