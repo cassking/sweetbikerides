@@ -13,7 +13,9 @@ class RouteReviews::ShowSerializer < RouteReviewSerializer
             :user_id,
             :username,
             :bio,
-            :location
+            :location,
+            :map_start_lng_lat,
+            :map_end_lng_lat
   def username
     object.user.username
   end

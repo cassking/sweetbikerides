@@ -14,7 +14,9 @@ class RouteReviewSerializer < ActiveModel::Serializer
             :map_end_latitude,
             :map_start_longitude,
             :map_end_longitude,
-            :coordinates
+            :coordinates,
+            :map_start_lng_lat,
+            :map_end_lng_lat
 def username
   object.user.username
 end

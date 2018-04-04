@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DescriptionTextField = props => {
+const MileageTextField = props => {
   return(
     <div className="form-group row">
       <label className="col-3">{props.label}</label>
@@ -11,7 +11,7 @@ const DescriptionTextField = props => {
             id={props.id}
             name={props.name}
             type={props.type}
-            onChange={props.handleDescriptionChange}
+            onChange={props.handleMileageChange}
             className="form-control"
           />
         </div>
@@ -19,4 +19,4 @@ const DescriptionTextField = props => {
   )
 }
 
-export default DescriptionTextField
+export default MileageTextField

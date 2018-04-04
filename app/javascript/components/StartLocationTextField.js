@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DescriptionTextField = props => {
+const StartLocationTextField = props => {
   return(
     <div className="form-group row">
       <label className="col-3">{props.label}</label>
@@ -8,10 +8,10 @@ const DescriptionTextField = props => {
           <input
             placeholder={props.placeholder}
             value={props.value}
-            id={props.id}
             name={props.name}
             type={props.type}
-            onChange={props.handleDescriptionChange}
+            id={props.id}
+            onChange={props.handleStartLocationChange}
             className="form-control"
           />
         </div>
@@ -19,4 +19,4 @@ const DescriptionTextField = props => {
   )
 }
 
-export default DescriptionTextField
+export default StartLocationTextField

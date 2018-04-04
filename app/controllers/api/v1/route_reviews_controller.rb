@@ -33,7 +33,6 @@ class Api::V1::RouteReviewsController < ApplicationController
           }
 
           render json: {
-            signed_in: @signed_in,
             route_review: @route_review_return
           }
         end
@@ -63,7 +62,9 @@ class Api::V1::RouteReviewsController < ApplicationController
       :map_start_latitude,
       :map_start_longitude,
       :map_end_latitude,
-      :map_end_longitude
+      :map_end_longitude,
+      :map_start_lng_lat,
+      :map_end_lng_lat
     )
   end
 end

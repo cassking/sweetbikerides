@@ -229,9 +229,14 @@ display:inline-block;
   text-align: left;
   display: inline-block;
 }
-input[type="file"]{
+input ::-webkit-input-placeholder,
+input ::placeholder,
+:-ms-input-placeholder ,
+::-ms-input-placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
 
 }
+
 .button, button, input[type=submit] {
   font-size: 0.8em;
   text-transform: uppercase;

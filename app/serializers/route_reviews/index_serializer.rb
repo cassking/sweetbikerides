@@ -13,6 +13,8 @@ class RouteReviews::IndexSerializer < RouteReviewSerializer
             :map_start_latitude,
             :map_end_latitude,
             :map_start_latitude,
-            :map_end_longitude
+            :map_end_longitude,
+            :map_start_lng_lat,
+            :map_end_lng_lat
 
 end
