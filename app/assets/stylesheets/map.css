@@ -18,7 +18,7 @@ border: 1px solid #eee;
 
 .add-review-form .add-review-container .mapboxgl-map {
   position: relative;
-  
+
   top:10px;
   left:-20px;
   height: 100vh;
@@ -28,3 +28,10 @@ margin:10px;
 padding:5px;
 
 }
+.mapbox-directions-instructions-wrapper {
+    max-height: 30vh;
+  }
+
+.directions-control.directions-control{
+      width: 70%;
+    }

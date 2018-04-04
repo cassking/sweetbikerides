@@ -8,7 +8,6 @@ const Map = ReactMapboxGl({
   accessToken
 });
 
-let mymap = Map
 const containerStyle = {
   height: '70vh',
   width: '70vw'
@@ -28,18 +27,24 @@ class MapInFormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lng: -75.163685,
-      lat: 39.952345,
-      center: center, // starting position
+      center: [0,0],
       zoom: 12,
-      map_start_latitude:0,
-      map_start_longitude:0,
-      map_start_latitude:0,
-      map_end_latitude:0 // starting zoom
+      map_start_lng_lat:0,
+      map_end_lng_lat:0 ,
+      route:{}// starting zoom
     }
-    this.getCoordinatesOnClick=this.getCoordinatesOnClick.bind(this)
+    this.handleClick=this.handleClick.bind(this)
   }
-
+  handleClick(e){
+      let originParent = document.getElementById("mapbox-directions-origin-input");
+      let originInputField = originParent.getElementsByTagName('input')[0]
+      let destinationParent = document.getElementById("mapbox-directions-destination-input");
+      let destinationInputField = destinationParent.getElementsByTagName('input')[0];
+      this.setState({
+        map_start_lng_lat:  originInputField.value,
+        map_end_lng_lat:    destinationInputField.value
+      });
+  }
   componentDidMount() {
       const { lng, lat, zoom } = this.state;
       mapboxgl.accessToken = accessToken;
@@ -47,47 +52,29 @@ class MapInFormContainer extends React.Component {
       const map = new mapboxgl.Map({
         container: this.mapContainer,
         style: 'mapbox://styles/mapbox/streets-v9',
-        center: [lng, lat],
+        center: center,
         zoom
       });
-      map.on('click', function (e) {
-          document.getElementById('info').innerHTML =
-              // e.point is the x, y coordinates of the mousemove event relative
-              // to the top-left corner of the map
-              JSON.stringify(e.point) + '<br />' +
-              // e.lngLat is the longitude, latitude geographical position of the event
-              JSON.stringify(e.lngLat);
-      });
-      map.on('click', () => {
-        // const { lng, lat } = map.getCenter();
-        const{ map_start_latitude, map_start_longitude} = map.getCenter();
-        alert(  this.state.map_start_latitude,this.state.  map_start_longitude )
-
-        this.setState({
-          map_start_latitude: lng.toFixed(4),
-          map_start_longitude: lat.toFixed(4),
-          zoom: map.getZoom().toFixed(2)
-        });
-      });
-
     map.addControl(new mapboxgl.GeolocateControl({
         positionOptions: {
         enableHighAccuracy: true
       },
       trackUserLocation: true
     }));
-
     map.addControl(new MapboxDirections({
+    //example route object
+//       {
+//     "duration": 88.4,
+//     "distance": 830.4,
+//     "weight": 88.4,
+//     "weight_name": "routability",
+//     "geometry": "oklyJ`{ph@yBuY_F{^_FxJoBrBs@d@mAT",
+//     "legs": [ ],
+//     "voiceLocale": "en"
+// }
       accessToken: accessToken
       }), 'top-left');
     }
-getCoordinatesOnClick(map, e){
-  document.getElementById('info').innerHTML =
-    JSON.stringify(e.lngLat["lat"]) + '<br />' +
-  JSON.stringify(e.lngLat["lng"]);
-}
-
-
   render() {
     const { lng, lat, zoom } = this.state;
     const dStyle = {
@@ -98,23 +85,32 @@ getCoordinatesOnClick(map, e){
     return (
       <div>
         <pre id='info'></pre>
-       {/* <Map
-        onClick={this.getCoordinatesOnClick}
-        // onMouseOver={this.getCoordinatesOnClick}
-        zoomLevel={this.state.zoomLevel}
-        style={style}
-        showsUserLocation={true}
-        userLocationVisible={true}
-        containerStyle={containerStyle }
-        center={this.state.center}>
-      <Layer  type="line" layout={lineLayout} paint={linePaint}>
-        <Feature coordinates={this.state.mappedRoute}  />
-      </Layer>
-</Map>  */}
+
          <span>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</span>
 
-      <div ref={Map => this.mapContainer = Map}  /></div>
+      <div ref={Map => this.mapContainer = Map} onClick={this.handleClick}  />
 
+        <label className="col-3">Starting Longitude/Latitude</label>
+          <div className="col-9">
+            <input
+              value={this.state.map_start_lng_lat}
+              name="map_start_lng_lat"
+              type="text"
+              id="map_start_lng_lat"
+              className="form-control"
+            />
+          </div>
+            <label className="col-3">Ending Longitude/Latitude</label>
+              <div className="col-9">
+                <input
+                  value={this.state.map_end_lng_lat}
+                  name="map_end_lng_lat"
+                  type="text"
+                  id="map_end_lng_lat"
+                  className="form-control"
+                />
+              </div>
+      </div>
 
     );
   }

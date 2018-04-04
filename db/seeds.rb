@@ -13,17 +13,17 @@ cat2 =Category.create!(name:"Asphalt", description: "Smooth pavement")
 cat3 =Category.create!(name:"Grass", description: "Grassy")
 cat4 =Category.create!(name:"Mixed/Asphalt/Gravel/Grass", description: "Mixed terrain, expect anything")
 
-u1 = User.create!(username: "user1",email: "u11@gmail.com", password: "pw1234",
+u1 = User.create!(username: "ILoveBikes1",email: "u11@gmail.com", password: "pw1234",
   bio: "I am a category 3, have been racing and mountain biking for over 10 years. My wife and daughter also ride but cyclocross.",
 location: "Watkins Glen, NY")
-u2 = User.create!(username: "user2",email: "u22@gmail.com", password: "pw1234",
+u2 = User.create!(username: "ILoveBikes2",email: "u22@gmail.com", password: "pw1234",
   bio: "I have been touring the US for 5 years. camping and hiking along the way, I travel wiht my 3 dogs, my wife and daughter also ride but cyclocross.",
   location: "Mt. Airy, PA")
 admin1= User.create!(username: "admin1",email: "admin1@gmail.com", password: "pw1234", role: "admin")
-u3 = User.create!(username: "user3",email: "u33@gmail.com", password: "pw1234",
+u3 = User.create!(username: "ILoveBikes3",email: "u33@gmail.com", password: "pw1234",
   bio: "I own altogether 15 bikes, road, track, mtn, cyclocross, hybrids, love cycling",
   location: "Palmyra, PA")
-u4 = User.create!(username: "user4",email: "u44@gmail.com", password: "pw1234",
+u4 = User.create!(username: "ILoveBikes4",email: "u44@gmail.com", password: "pw1234",
   bio: "my dad got me into racing cyclocross, in my spare time i run my own restaurant",
   location: "Philly, PA")
 
