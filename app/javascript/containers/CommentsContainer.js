@@ -43,10 +43,10 @@ class CommentsContainer extends Component {
    })
    .then(response => response.json())
    .then(body => {
-     console.log('COMMENT deleted', body['comment'])
+     console.log('COMMENT deleted', body)
      this.setState({
-       signed_in: body['signed_in'],
-       comments: this.props.comments
+       // signed_in: body['signed_in'],
+       comments: this.props.comments.pop(body['comment'])
        // comments: body['comment']
      })
    })
@@ -77,8 +77,6 @@ class CommentsContainer extends Component {
         }
       })
       .then(body => {
-        // console.log('body, singed in?:',body, this.state.signed_in)
-
 //only setting the current user and signed in states here
         this.setState({
           signed_in: body['signed_in'],
@@ -109,13 +107,14 @@ class CommentsContainer extends Component {
       }
     })
     .then(response => response.json())
-    .then(body => {
-      console.log('commentd added and all comments: ', body['comment'],
-this.props.comments)
-      let updatedComments = body;
+    .then(data => {
+      console.log('data ',data)
+      //in this app comment are brought in as props
+        let updatedComments = this.props.comments;
+          console.log('data ',updatedComments)
+          updatedComments.unshift(data['comment']['comment']['body'])
       this.setState({
-        comments: updatedComments
-
+       comments: updatedComments
       })
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
