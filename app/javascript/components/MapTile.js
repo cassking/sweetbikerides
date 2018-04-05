@@ -37,7 +37,8 @@ class MapTile extends React.Component {
       location:'',
       mappedRoute:[],
       map_start_lng_lat:this.props.map_start_lng_lat,
-      map_end_lng_lat:this.props.map_start_lng_lat
+      map_end_lng_lat:this.props.map_start_lng_lat,
+      mileage:0
     }
     this.onRouteChange = this.onRouteChange.bind(this)
   }
@@ -60,9 +61,11 @@ class MapTile extends React.Component {
        return parsed
      })
      .then(route_data => {
+       // debugger
       this.setState({
          mappedRoute: route_data.routes[0].geometry.coordinates,
-         center:route_data.routes[0].geometry.coordinates[0]
+         center:route_data.routes[0].geometry.coordinates[0],
+         mileage:route_data.routes[0].legs[0].distance
         })
       })
   }
@@ -72,6 +75,7 @@ class MapTile extends React.Component {
 
   render() {
     return (
+      <div>
       <Map
         zoomLevel={this.state.zoomLevel}
         style={style}
@@ -83,7 +87,8 @@ class MapTile extends React.Component {
         <Feature coordinates={this.state.mappedRoute}  />
       </Layer>
 </Map>
-
+<h4>Mileage/distance: {this.state.mileage}</h4>
+</div>
     );
   }
 }
