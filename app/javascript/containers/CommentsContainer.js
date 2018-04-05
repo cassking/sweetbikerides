@@ -13,7 +13,6 @@ class CommentsContainer extends Component {
       commentsPerPage: 10,
       if_admin: false,
       user_id: null
-
     }
     this.getCommentsDataSignedInCurrentUser = this.getCommentsDataSignedInCurrentUser.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -43,11 +42,13 @@ class CommentsContainer extends Component {
    })
    .then(response => response.json())
    .then(body => {
-     console.log('COMMENT deleted', body)
+     // console.log('COMMENT deleted', body)
      this.setState({
-       // signed_in: body['signed_in'],
+       //remember here we are pulling in and setting
+       //signed in data in a separate function below
+       //this onlupdates comments brought in as props
        comments: this.props.comments.pop(body['comment'])
-       // comments: body['comment']
+
      })
    })
   }
