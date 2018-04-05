@@ -51,7 +51,6 @@ class Api::V1::RouteReviewsController < ApplicationController
       :points_interest,
       :start_location,
       :end_location,
-      :coordinates,
       map_start_lng_lat:[],
       map_end_lng_lat:[]
     )

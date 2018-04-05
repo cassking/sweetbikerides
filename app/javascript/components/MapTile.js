@@ -3,13 +3,7 @@ import { Route, Point, IndexRoute, Router, browserHistory, hashHistory, Link } f
 import ReactMapboxGl, { Layer, Feature, ZoomControl, GeolocateControl } from "react-mapbox-gl";
 import { geoData } from '../Constants';
 const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ"
-const mappedRoute =[
-[-84.518399,39.134126],[-84.51841,39.133781],[-84.520091,39.133389],[-84.520497,
-39.131655],[-84.520852,39.128039],[-84.52036,39.127901],[-84.52094,39.122783],
-[-84.52022,39.122713],[-84.520768,39.120841],[-84.519639,39.120268],
-[-84.513743,39.115317],[-84.514554,39.114744],[-84.514307,39.114531],
-[-84.514551,39.114249],[-84.511692,39.102682],[-84.511987,39.102638]
-]
+
 
 const style= "mapbox://styles/mapbox/streets-v10"
 const Map = ReactMapboxGl({
@@ -46,7 +40,6 @@ class MapTile extends React.Component {
       map_end_lng_lat:this.props.map_start_lng_lat
     }
     this.onRouteChange = this.onRouteChange.bind(this)
-    // this.getRoute=this.getRoute.bind(this)
   }
 
   onRouteChange(e){
@@ -55,7 +48,6 @@ class MapTile extends React.Component {
     });
 
   }
-
 
   componentDidMount() {
     if (this.props.map_start_lng_lat && this.props.map_start_lng_lat){

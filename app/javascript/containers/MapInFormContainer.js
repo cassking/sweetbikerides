@@ -4,9 +4,6 @@ const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3
 import mapboxgl from 'mapbox-gl'
 
 const style= "mapbox://styles/mapbox/outdoors-v10"
-// const Map = ReactMapboxGl({
-//   accessToken
-// });
 
 const containerStyle = {
   height: '70vh',
@@ -22,7 +19,7 @@ const linePaint = {
   'line-color': '#4790E5',
   'line-width': 12
 };
-// let map = Map
+
 class MapInFormContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -51,7 +48,6 @@ class MapInFormContainer extends React.Component {
       let originInputField = originParent.getElementsByTagName('input')[0]
       let destinationParent = document.getElementById("mapbox-directions-destination-input");
       let destinationInputField = destinationParent.getElementsByTagName('input')[0];
-
       let destination = destinationInputField.value
       let arrDestination = destination.split(",").map(Number);
       let origin = originInputField.value
