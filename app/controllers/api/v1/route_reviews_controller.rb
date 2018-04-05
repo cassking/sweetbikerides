@@ -28,9 +28,6 @@ class Api::V1::RouteReviewsController < ApplicationController
             signed_in: @signed_in,
             route_review: @route_review
           }
-          #render json:
-          # RouteReview.where(user:current_user)
-
           render json: {
             route_review: @route_review_return
           }
@@ -39,9 +36,6 @@ class Api::V1::RouteReviewsController < ApplicationController
   end
 
   private
-    def pattern_params
-      params.require(:route_review).permit(coordinates: [])
-    end
 
   def route_review_params
     params.require(:route_review).permit(
@@ -58,12 +52,8 @@ class Api::V1::RouteReviewsController < ApplicationController
       :start_location,
       :end_location,
       :coordinates,
-      :map_start_latitude,
-      :map_start_longitude,
-      :map_end_latitude,
-      :map_end_longitude,
-      :map_start_lng_lat,
-      :map_end_lng_lat
+      map_start_lng_lat:[],
+      map_end_lng_lat:[]
     )
   end
 end

@@ -15,6 +15,7 @@ const RouteReviewShow = (props) => {
             center={props.center}
             map_end_lng_lat={props.map_end_lng_lat}
             map_start_lng_lat={props.map_start_lng_lat}
+      
 
           />
         </div>

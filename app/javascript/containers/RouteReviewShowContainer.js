@@ -16,7 +16,9 @@ class RouteReviewShowContainer extends Component {
       comments: [],
       signed_in: false,
       if_admin: false
+
     }
+  
   }
 
   componentDidMount() {
@@ -31,8 +33,10 @@ class RouteReviewShowContainer extends Component {
       })
     })
   }
+
+
   render() {
-    debugger
+    // debugger
 
     return(
       <div className="main-wrapper">
@@ -60,10 +64,7 @@ class RouteReviewShowContainer extends Component {
           coordinates={this.coordinates}
           map_start_lng_lat={this.state.route_review.map_start_lng_lat}
           map_end_lng_lat={this.state.route_review.map_end_lng_lat}
-          map_start_latitude={this.map_start_latitude}
-          map_start_longitude={this.map_start_longitude}
-          map_end_latitude={this.map_end_latitude}
-          map_end_longitude={this.map_end_longitude}
+
 
         />
 

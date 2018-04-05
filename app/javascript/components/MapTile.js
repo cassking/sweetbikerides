@@ -36,47 +36,47 @@ class MapTile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      center:this.props.map_start_lng_lat,
+      center:[0,0],
       start:[],
       end:[],
       zoomLevel:[15],
       location:'',
-      mappedRoute:[]
+      mappedRoute:[],
+      map_start_lng_lat:this.props.map_start_lng_lat,
+      map_end_lng_lat:this.props.map_start_lng_lat
     }
     this.onRouteChange = this.onRouteChange.bind(this)
-    this.getRoute=this.getRoute.bind(this)
+    // this.getRoute=this.getRoute.bind(this)
   }
 
   onRouteChange(e){
-    this.setState({ mappedRoute: e.target.value });
+  this.setState({
+      mappedRoute: e.target.value
+    });
+
   }
+
 
   componentDidMount() {
-    let start = [this.props.map_start_lng_lat];
-    let end = [this.props.map_end_lng_lat];
-    let routeAPI = `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0],start[1]};${end[0],end[1]};?geometries=geojson&access_token=pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ`
-
-
-    fetch(`https://api.mapbox.com/directions/v5/mapbox/cycling/${start};${end};?geometries=geojson&access_token=pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ`)
-    .then(response => {
-      let parsed = response.json()
-      return parsed
-    }).then(route_data => {
-      // console.log('route data ',route_data.routes[0].geometry.coordinates)
-      // console.log('mapped', mappedRoute[0])
-
+    if (this.props.map_start_lng_lat && this.props.map_start_lng_lat){
+        let start = this.props.map_start_lng_lat;
+        let end = this.props.map_end_lng_lat;
+        let routeAPI = `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ`
+     fetch(routeAPI)
+     .then(response => {
+       let parsed = response.json()
+       return parsed
+     })
+     .then(route_data => {
       this.setState({
-        mappedRoute: route_data.routes[0].geometry.coordinates,
-        center:route_data.routes[0].geometry.coordinates[0]
-            })
-    })
-    //console.log(this.state.center)
+         mappedRoute: route_data.routes[0].geometry.coordinates,
+         center:route_data.routes[0].geometry.coordinates[0]
+        })
+      })
   }
 
-
-getRoute() {
-let routeRequest ='https://api.mapbox.com/directions/v5/mapbox/cycling/-84.518641,39.134270;-84.512023,39.102779?geometries=geojson&access_token=pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ'
 }
+
 
   render() {
     return (
