@@ -13,7 +13,7 @@ const NameTextField = props => {
             id={props.id}
             onChange={props.handleNameChange}
             className="form-control"
-          />
+            required/>
         </div>
     </div>
   )

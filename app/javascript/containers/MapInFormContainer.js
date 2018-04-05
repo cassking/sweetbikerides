@@ -29,8 +29,8 @@ class MapInFormContainer extends React.Component {
     this.state = {
       center: [0,0],
       zoom: 12,
-      map_start_lng_lat:this.props.map_start_lng_lat,
-      map_end_lng_lat:this.props.map_end_lng_lat ,
+      map_start_lng_lat:[],
+      map_end_lng_lat:[] ,
       route:{}// starting zoom
     }
     this.handleClick=this.handleClick.bind(this)
@@ -52,13 +52,19 @@ class MapInFormContainer extends React.Component {
       let destinationParent = document.getElementById("mapbox-directions-destination-input");
       let destinationInputField = destinationParent.getElementsByTagName('input')[0];
 
-      // debugger
+      let destination = destinationInputField.value
+      let arrDestination = destination.split(",").map(Number);
+      let origin = originInputField.value
+      let arrOrigin = origin.split(",").map(Number);
+
+
       this.setState({
-        map_start_lng_lat:  originInputField.value,
-        map_end_lng_lat:    destinationInputField.value
+        map_start_lng_lat:  arrOrigin,
+        map_end_lng_lat:    arrDestination
       });
-      this.props.handleStartCoordinatesChange(originInputField.value);
-      this.props.handleEndCoordinatesChange(destinationInputField.value);
+      console.log(arrOrigin, arrDestination)
+      this.props.handleStartCoordinatesChange(arrOrigin);
+      this.props.handleEndCoordinatesChange(arrDestination);
   }
   componentDidMount() {
       const { lng, lat, zoom } = this.state;
@@ -105,6 +111,7 @@ class MapInFormContainer extends React.Component {
               type="text"
               id="map_start_lng_lat"
               className="form-control"
+              required
             />
           </div>
             <label className="col-3">Ending Longitude/Latitude</label>
@@ -115,6 +122,7 @@ class MapInFormContainer extends React.Component {
                   type="text"
                   id="map_end_lng_lat"
                   className="form-control"
+                  required
                 />
               </div>
       </div>

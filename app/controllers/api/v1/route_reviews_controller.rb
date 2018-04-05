@@ -31,10 +31,13 @@ class Api::V1::RouteReviewsController < ApplicationController
             signed_in: @signed_in,
             route_review: @route_review
           }
-
           render json: {
             route_review: @route_review_return
           }
+        # else
+        #   render json:{ error: route_review.full_messages },
+        #   status: :unprocessable_entity
+
         end
       end
   end

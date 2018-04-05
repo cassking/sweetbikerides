@@ -13,7 +13,7 @@ const DescriptionTextField = props => {
             type={props.type}
             onChange={props.handleDescriptionChange}
             className="form-control"
-          />
+            required />
         </div>
     </div>
   )

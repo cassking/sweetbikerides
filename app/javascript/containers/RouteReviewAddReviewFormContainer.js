@@ -20,15 +20,15 @@ const coordinates =[
       errors: {},
       signed_in: false,
       if_admin: false,
-      user_id: null,
-      name:null,
-      description:null,
+      user_id:0,
+      name:'',
+      description:'',
       category:'',
       difficulty: '',
-      mileage:null,
-      start_location:null,
-      end_location:null,
-      points_interest:null,
+      mileage:0,
+      start_location:'',
+      end_location:'',
+      points_interest:'',
       map_start_lng_lat:[],
       map_end_lng_lat:[]
     }
@@ -122,11 +122,12 @@ const coordinates =[
     // debugger
     e.preventDefault();
     if (
-      this.validateSignedIn(this.state.signed_in) 
-      // this.validateField(this.state.name) &&
-      // this.validateField(this.state.description) &&
-      // this.validateField(this.state.map_start_lng_lat) &&
-      // this.validateField(this.state.map_end_lng_lat)
+      this.validateSignedIn(this.state.signed_in)&&
+      this.validateField(this.state.category)&&
+       this.validateField(this.state.name) &&
+       this.validateField(this.state.description) &&
+       this.validateField(this.state.map_start_lng_lat) &&
+     this.validateField(this.state.map_end_lng_lat)
 
     ) {
       let payload = {
@@ -157,14 +158,14 @@ const coordinates =[
   }
 
   validateField(text, error) {
-   if (text === '' || text === ' ') {
+   if ( text === '' || text === ' ') {
      let newError = error
      this.setState({ errors: Object.assign(this.state.errors, newError) })
      return false
    } else {
      let errorState = this.state.errors
-     let errorKey = Object.keys(error)[0]
-     delete errorState[errorKey]
+     // let errorKey = Object.keys(error)[0]
+     // delete errorState[errorKey]
      this.setState({ errors: errorState })
      return true
    }
@@ -172,14 +173,13 @@ const coordinates =[
 
   handleChange(e) {
   this.setState({ route_review: e.target.value })
-    //this.setState({file: e.target.files[0]})save for later
   }
   handleNameChange(e){
-    this.validateField(e.target.value, { name: 'Please give a name' } )
+    this.validateField(e.target.value, { name: 'Please give the route a name' } )
     this.setState( { name: e.target.value } )
   }
   handleDescriptionChange(e){
-    this.validateField(e.target.value, { description: 'Please give a description' } )
+    this.validateField(e.target.value, { description: 'Please give the route a description' } )
     this.setState( { description: e.target.value } )
   }
 

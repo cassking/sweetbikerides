@@ -18,7 +18,9 @@ let routeCategories=[]
     <div className="form-group row">
       <label className="col-3">{props.label}</label>
         <div className="col-9">
-          <select name={props.name}
+          <select
+            required="required"
+            name={props.name}
             value={props.value}
             onChange={props.handleCategorySelectChange}
             className="form-control">
