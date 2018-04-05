@@ -152,9 +152,7 @@ const coordinates =[
         route_review: {}
       })
     }
-    // else{
-    //   alert('Please, fill in the required fields')
-    // }
+
   }
 
   validateField(text, error) {

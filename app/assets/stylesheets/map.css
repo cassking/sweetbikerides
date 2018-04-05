@@ -44,7 +44,7 @@ padding:5px;
 
 }
 .mapbox-directions-instructions-wrapper {
-    max-height: 30vh!;
+    max-height: 30vh;
   }
 
 .mapbox-directions-step{

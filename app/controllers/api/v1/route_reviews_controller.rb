@@ -17,27 +17,23 @@ class Api::V1::RouteReviewsController < ApplicationController
   end
 
   def create
-
       @signed_in = user_signed_in?
       if_admin = false
       if_admin = current_user.admin? if @signed_in
       if current_user
         @route_review =  RouteReview.new(route_review_params)
         @route_review.user = current_user
-
-        # binding.pry
         if @route_review.save
           @route_review_return = {
             signed_in: @signed_in,
             route_review: @route_review
           }
+          #render json:
+          # RouteReview.where(user:current_user)
+
           render json: {
             route_review: @route_review_return
           }
-        # else
-        #   render json:{ error: route_review.full_messages },
-        #   status: :unprocessable_entity
-
         end
       end
   end
