@@ -13,15 +13,18 @@ const RouteReviewShow = (props) => {
         <MapTile
             coordinates={props.coordinates}
             center={props.center}
+            map_end_lng_lat={props.map_end_lng_lat}
+            map_start_lng_lat={props.map_start_lng_lat}
+            mileage={props.mileage}
+
+
           />
         </div>
       <div className="map-info-holder">
         <ul className="route-details">
         <li><span>Name:</span> {props.name}</li>
         <li><span>Description</span> {props.description}</li>
-        <li><span>Mileage: </span>{props.mileage}</li>
         <li><span>Category:</span> {props.category} | <span>Difficulty:</span> {props.difficulty}</li>
-        <li><span>Start location:</span> {props.start_location} | <span>End location:</span> {props.end_location}</li>
         <li><span>Notes on points of interest:</span> {props.points_interest}</li>
       </ul>
       <p><img className="avatar" src="/images/cycle-avatar.png" alt="avatar" />

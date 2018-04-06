@@ -1,18 +1,18 @@
 import React from 'react';
-import { Route, IndexRoute, Router, browserHistory, hashHistory, Link } from 'react-router'
+import { Route, Point, IndexRoute, Router, browserHistory, hashHistory, Link } from 'react-router'
 import ReactMapboxGl, { Layer, Feature, ZoomControl, GeolocateControl } from "react-mapbox-gl";
 import { geoData } from '../Constants';
 const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ"
-const routeCoordinates =[
-[-84.518399,39.134126],[-84.51841,39.133781],[-84.520091,39.133389],[-84.520497,
-39.131655],[-84.520852,39.128039],[-84.52036,39.127901],[-84.52094,39.122783],
-[-84.52022,39.122713],[-84.520768,39.120841],[-84.519639,39.120268],
-[-84.513743,39.115317],[-84.514554,39.114744],[-84.514307,39.114531],
-[-84.514551,39.114249],[-84.511692,39.102682],[-84.511987,39.102638]
-]
+
+
+const style= "mapbox://styles/mapbox/streets-v10"
 const Map = ReactMapboxGl({
-  accessToken: accessToken
-  });
+  accessToken
+});
+const containerStyle = {
+  height: '70vh',
+  width: '70vw'
+};
 
 const lineLayout = {
   'line-cap': 'round',
@@ -23,44 +23,84 @@ const linePaint = {
   'line-color': '#4790E5',
   'line-width': 12
 };
+//const mappedRoute = route.points.map( point => [point.lat, point.lng]);
+//const route2 = 'https://api.mapbox.com/directions/v5/mapbox/cycling/-84.518641,39.134270;-84.512023,39.102779?geometries=geojson&access_token=pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ'
 
-const layerStyles = {
-  route: {
-    lineColor: '#01c0ff',
-    lineWidth: 5,
-    lineOpacity: 0.3,
-  },
-};
+class MapTile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      center:[0,0],
+      start:[],
+      end:[],
+      zoomLevel:[15],
+      location:'',
+      mappedRoute:[],
+      map_start_lng_lat:this.props.map_start_lng_lat,
+      map_end_lng_lat:this.props.map_start_lng_lat,
+      mileage:0,
+      start_location:'',
+      end_location: ''
+    }
+    this.onRouteChange = this.onRouteChange.bind(this)
+  }
 
-const MapTile = (props) => {
-  return(
-    <div className="mapTile">
-      <Map
-        accessToken={accessToken}
-        style="mapbox://styles/cassking/cjfachvt46kps2sob2eqponl6"
-        zoomLevel={[16]}
-        animated={props.animated}
-        interactive='true'
-        userLocationVisible={props.userLocationVisible}
-        showUserLocation={props.showUserLocation}
-        containerStyle={{
-          height: "90vh",
-          width: "90vw"
-        }}
+  onRouteChange(e){
+  this.setState({
+      mappedRoute: e.target.value
+    });
 
-        center={routeCoordinates[0]}
-        >
-        <Layer
-          type="line"
-          layout={lineLayout}
-          paint={linePaint}>
-          <Feature coordinates={routeCoordinates}/>
-        </Layer>
+  }
 
-    </Map>
-  </div>
+  componentDidMount() {
+    if (this.props.map_start_lng_lat && this.props.map_start_lng_lat){
+        let start = this.props.map_start_lng_lat;
+        let end = this.props.map_end_lng_lat;
+        let routeAPI = `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ`
+     fetch(routeAPI)
+     .then(response => {
+       let parsed = response.json()
+       return parsed
+     })
+     .then(route_data => {
+     // debugger
+     let calculatedDistanceInMiles = route_data.routes[0].legs[0].distance*0.000621371192
+      this.setState({
+         mappedRoute: route_data.routes[0].geometry.coordinates,
+         center:route_data.routes[0].geometry.coordinates[0],
+         mileage:parseFloat(Math.round(calculatedDistanceInMiles * 100) / 100).toFixed(2),
+         start_location: route_data.waypoints[0].name,
+         end_location: route_data.waypoints[1].name
 
-  )
+        })
+      })
+  }
+
 }
 
-export default MapTile;
+  render() {
+    return (
+      <div>
+      <Map
+        zoomLevel={this.state.zoomLevel}
+        style={style}
+        showsUserLocation={true}
+        userLocationVisible={true}
+        containerStyle={containerStyle }
+        center={this.state.center}>
+      <Layer  type="line" layout={lineLayout} paint={linePaint}>
+        <Feature coordinates={this.state.mappedRoute}  />
+      </Layer>
+</Map>
+<h4>Automatically generated map information:</h4>
+<ul className="route-details">
+<li><span>Mileage/distance:</span> {this.state.mileage} miles</li>
+<li><span>Start Address:</span> {this.state.start_location}</li>
+<li><span>Ending Address:</span> {this.state.end_location}</li>
+</ul>
+</div>
+    );
+  }
+}
+
+ export default MapTile;

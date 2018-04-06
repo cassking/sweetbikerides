@@ -6,14 +6,9 @@ class RouteReviews::IndexSerializer < RouteReviewSerializer
             :weatherconditions,
             :mileage,
             :points_interest,
-            :coordinates,
             :start_location,
             :end_location,
             :difficulty,
-            :map_start_latitude,
-            :map_end_latitude,
-            :map_start_latitude,
-            :map_end_longitude,
             :map_start_lng_lat,
             :map_end_lng_lat
 

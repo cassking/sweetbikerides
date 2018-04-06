@@ -14,6 +14,9 @@ const IndexRouteReviewTile = (props) => {
                 <li><span>Description:</span> {props.description}</li>
                 <li><span>Mileage:</span>{props.mileage}</li>
                 <li><span>Category:</span> {props.category}</li>
+              
+
+
 
               </ul>
             </div>

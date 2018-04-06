@@ -16,7 +16,9 @@ class RouteReviewShowContainer extends Component {
       comments: [],
       signed_in: false,
       if_admin: false
+
     }
+
   }
 
   componentDidMount() {
@@ -31,7 +33,10 @@ class RouteReviewShowContainer extends Component {
       })
     })
   }
+
+
   render() {
+    // debugger
 
     return(
       <div className="main-wrapper">
@@ -51,16 +56,15 @@ class RouteReviewShowContainer extends Component {
           username={this.state.route_review.username}
           location={this.state.route_review.location}
           routeReviewId={this.state.route_review.id}
-          center={[-75.163685, 39.952345]}
+          center={this.state.route_review.map_start_lng_lat}
           zoomLevel={[16]}
           animated={true}
           userLocationVisible={true}
           showUserLocation={true}
           coordinates={this.coordinates}
-          map_start_latitude={this.map_start_latitude}
-          map_start_longitude={this.map_start_longitude}
-          map_end_latitude={this.map_end_latitude}
-          map_end_longitude={this.map_end_longitude}
+          map_start_lng_lat={this.state.route_review.map_start_lng_lat}
+          map_end_lng_lat={this.state.route_review.map_end_lng_lat}
+
 
         />
 
@@ -74,6 +78,7 @@ class RouteReviewShowContainer extends Component {
           if_admin={this.state.if_admin}
           current_user={this.current_user}
           user_id={this.state.user_id}
+
         />
       </div>
       </div>

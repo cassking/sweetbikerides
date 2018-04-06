@@ -10,11 +10,6 @@ class RouteReviewSerializer < ActiveModel::Serializer
             :user_id,
             :username,
             :signed_in,
-            :map_start_latitude,
-            :map_end_latitude,
-            :map_start_longitude,
-            :map_end_longitude,
-            :coordinates,
             :map_start_lng_lat,
             :map_end_lng_lat
 def username
