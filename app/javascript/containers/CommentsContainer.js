@@ -18,6 +18,7 @@ class CommentsContainer extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.addNewComment = this.addNewComment.bind(this);
     this.handleDeleteComment = this.handleDeleteComment.bind(this);
+
   }
 
   handleDeleteComment(comment_id) {
@@ -106,6 +107,7 @@ class CommentsContainer extends Component {
         error = new Error(errorMessage);
         throw(error);
       }
+
     })
     .then(response => response.json())
     .then(data => {
@@ -117,6 +119,7 @@ class CommentsContainer extends Component {
       this.setState({
        comments: updatedComments
       })
+      this.props.getRoute()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
