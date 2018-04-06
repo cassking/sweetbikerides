@@ -5,9 +5,6 @@ import DescriptionTextField from './DescriptionTextField';
 import GpxFileUploadField from './GpxFileUploadField';
 import SelectCategoryField from './SelectCategoryField';
 import SelectDifficultyField from './SelectDifficultyField';
-import EndLocationTextField from './EndLocationTextField';
-import StartLocationTextField from './StartLocationTextField';
-import MileageTextField from './MileageTextField';
 import PointsOfInterestTextField from './PointsOfInterestTextField';
 import MapInFormContainer from '../containers/MapInFormContainer'
 
@@ -21,9 +18,9 @@ const AddReviewForm = props => {
 
             <NameTextField
               value={props.nameValue}
-              placeholder="Add a Route Name"
+              placeholder="Add a Route Name (required)"
               name="name"
-              label="Name Of Ride Route"
+              label="Name of Ride Route"
               name="name"
               type="text"
               className="name"
@@ -32,8 +29,8 @@ const AddReviewForm = props => {
             />
             <DescriptionTextField
               value={props.descriptionValue}
-              placeholder="Add a Description"
-              label="Add A Description"
+              placeholder="Add a Route Description (required)"
+              label="Add a Description"
               name="description"
               type="text"
               className="description"
@@ -41,6 +38,7 @@ const AddReviewForm = props => {
               handleDescriptionChange={props.handleDescriptionChange}
           />
             <h4>Add coordinates by clicking on A and B in the map to log the start and end coordinate points</h4>
+            <p>Once your Route Review is created, total mileage, starting address and ending address will appear automatically on the Route Review page, if available for that particular route.</p>
             <MapInFormContainer
               handleStartCoordinatesChange={props.handleStartCoordinatesChange}
               handleEndCoordinatesChange={props.handleEndCoordinatesChange}
@@ -48,7 +46,7 @@ const AddReviewForm = props => {
             <SelectCategoryField
               value={props.categoryValue}
               placeholder="Choose a category"
-              label="Choose A Category"
+              label="Choose a Category (required)"
               name="category"
               className="category"
               id="category"
@@ -71,36 +69,6 @@ const AddReviewForm = props => {
               id="file"
               handleFileUploadChange={props.handleFileUploadChange}
             />
-            <MileageTextField
-              value={props.mileageValue}
-              placeholder="Add mileage"
-              label="Add Mileage"
-              name="mileage"
-              type="text"
-              className="mileage"
-              id="mileage"
-              handleMileageChange={props.handleMileageChange}
-          />
-          <StartLocationTextField
-            value={props.startLocationValue}
-            placeholder="Add a start location"
-            label="Add a start location"
-            name="start_location"
-            type="text"
-            className="start_location"
-            id="start_location"
-            handleStartLocationChange={props.handleStartLocationChange}
-          />
-        <EndLocationTextField
-          value={props.endLocationValue}
-          placeholder="Add an ending location"
-          label="Add an ending location"
-          name="end_location"
-          type="text"
-          className="end_location"
-          id="end_location"
-          handleEndLocationChange={props.handleEndLocationChange}
-        />
         <PointsOfInterestTextField
           value={props.pointsOfInterestValue}
           placeholder="Add any points of interest"

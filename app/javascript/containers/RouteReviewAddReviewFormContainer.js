@@ -29,9 +29,6 @@ import AddReviewForm from '../components/AddReviewForm'
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleCategorySelectChange = this.handleCategorySelectChange.bind(this)
     this.handleDifficultySelectChange = this.handleDifficultySelectChange.bind(this)
-    this.handleMileageChange = this.handleMileageChange.bind(this)
-    this.handleEndLocationChange = this.handleEndLocationChange.bind(this)
-    this.handleStartLocationChange = this.handleStartLocationChange.bind(this)
     this.handlePointsOfInterestChange = this.handlePointsOfInterestChange.bind(this)
     this.addNewRouteReview = this.addNewRouteReview.bind(this)
     this.validateField=this.validateField.bind(this)
@@ -178,15 +175,7 @@ import AddReviewForm from '../components/AddReviewForm'
   handleDifficultySelectChange(e){
     this.setState( { difficulty: e.target.value } )
   }
-  handleStartLocationChange(e){
-    this.setState( {start_location: e.target.value } )
-  }
-  handleEndLocationChange(e){
-    this.setState( {end_location: e.target.value } )
-  }
-  handleMileageChange(e){
-    this.setState( {mileage: e.target.value } )
-  }
+
   handlePointsOfInterestChange(e){
     this.setState( {points_interest: e.target.value } )
   }
@@ -211,25 +200,19 @@ import AddReviewForm from '../components/AddReviewForm'
     if (this.state.signed_in) {
     addReviewForm =
     <div className="form-elements">
-      <p>Hello, you are now  signed in and can add your ride!</p>
+      <p>Hello, you are now  logged in and can add your personalized details and a map for a new Route Review!</p>
       <AddReviewForm
         nameValue={this.state.name}
         descriptionValue={this.state.description}
         categoryValue={this.state.category}
         difficultyValue={this.state.difficulty}
-        mileageValue={this.state.mileage}
         pointsOfInterestValue={this.state.points_interest}
-        startLocationValue={this.state.start_location}
-        endLocationValue={this.state.end_location}
         handleFormSubmit={this.handleFormSubmit}
         onChange={this.handleChange}
         handleCategorySelectChange={this.handleCategorySelectChange}
         handleDifficultySelectChange={this.handleDifficultySelectChange}
         handleDescriptionChange={this.handleDescriptionChange}
         handleNameChange={this.handleNameChange}
-        handleMileageChange={this.handleMileageChange}
-        handleStartLocationChange={this.handleStartLocationChange}
-        handleEndLocationChange={this.handleEndLocationChange}
         handlePointsOfInterestChange={this.handlePointsOfInterestChange}
         handleStartCoordinatesChange={this.handleStartCoordinatesChange}
         handleEndCoordinatesChange={this.handleEndCoordinatesChange}
@@ -242,7 +225,7 @@ import AddReviewForm from '../components/AddReviewForm'
     else {
       addReviewForm=
       <div className="form-elements">
-        <p>Please, sign in to add a review.</p>
+        <p>Please, LOG IN to add a review.</p>
       </div>
     }
     return (

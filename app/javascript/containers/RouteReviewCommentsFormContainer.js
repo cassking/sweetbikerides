@@ -94,7 +94,7 @@ import CommentForm from '../components/CommentForm'
     }
     else {
       commentForm =
-    <p>Sign in to comment</p>
+    <p>Please LOG IN to comment</p>
 
     }
     return (

@@ -99,7 +99,9 @@ class MapInFormContainer extends React.Component {
     return (
       <div>
       <div ref={Map => this.mapContainer = Map} onClick={this.handleClick}  />
-        <label className="col-3">Starting Longitude/Latitude</label>
+        <label className="col-3">Starting Longitude/Latitude
+        (the field is automatically populated by clicking on map at the start point)
+      </label>
           <div className="col-9">
             <input
               value={this.state.map_start_lng_lat}
@@ -110,7 +112,9 @@ class MapInFormContainer extends React.Component {
               required
             />
           </div>
-            <label className="col-3">Ending Longitude/Latitude</label>
+            <label className="col-3">Ending Longitude/Latitude
+          (the field is automatically populated by clicking on map at the end point)
+        </label>
               <div className="col-9">
                 <input
                   value={this.state.map_end_lng_lat}
