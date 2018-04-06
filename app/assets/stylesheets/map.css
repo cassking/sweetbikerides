@@ -7,21 +7,21 @@ font-size: 12px;
   border-radius: 6px;
 }
 .distance-container {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 1;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1;
 }
 
 .distance-container > * {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    font-size: 11px;
-    line-height: 18px;
-    display: block;
-    margin: 0;
-    padding: 5px 10px;
-    border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 11px;
+  line-height: 18px;
+  display: block;
+  margin: 0;
+  padding: 5px 10px;
+  border-radius: 3px;
 }
 .mapTile,.mapboxgl-map{
   margin: 0 auto;
@@ -30,11 +30,11 @@ font-size: 12px;
 }
 .map-holder, .map-info-holder {
   display:inline-block;
-width: 100%;
-  vertical-align: top;
-padding: 5px;
   width: 100%;
-border: 1px solid #eee;
+  vertical-align: top;
+  padding: 5px;
+  width: 100%;
+  border: 1px solid #eee;
 }
 
 
@@ -45,8 +45,8 @@ border: 1px solid #eee;
   height: 100vh;
   width: 80vw;
   border: 2px solid #eee;
-margin:10px;
-padding:5px;
+  margin:10px;
+  padding:5px;
 
 }
 .mapbox-directions-instructions-wrapper {
@@ -66,7 +66,6 @@ padding:5px;
 
 }
   @media only screen and (min-width: 300px){
-
     .directions-control.directions-control{
         width:70%!important;
           max-width: 70%!important;
