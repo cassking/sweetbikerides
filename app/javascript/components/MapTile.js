@@ -92,11 +92,12 @@ class MapTile extends React.Component {
         <Feature coordinates={this.state.mappedRoute}  />
       </Layer>
 </Map>
-<h5>Automatically generated map information:</h5>
-<p>Mileage/distance: {this.state.mileage} miles</p>
-<p>Start Address: {this.state.start_location}</p>
-<p>Ending Address: {this.state.end_location}</p>
-
+<h4>Automatically generated map information:</h4>
+<ul className="route-details">
+<li><span>Mileage/distance:</span> {this.state.mileage} miles</li>
+<li><span>Start Address:</span> {this.state.start_location}</li>
+<li><span>Ending Address:</span> {this.state.end_location}</li>
+</ul>
 </div>
     );
   }
