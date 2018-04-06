@@ -77,6 +77,7 @@ import AddReviewForm from '../components/AddReviewForm'
     }
   }
   addNewRouteReview(submission) {
+
       fetch("/api/v1/route_reviews", {
         method: 'post',
         credentials: 'same-origin',
@@ -87,10 +88,10 @@ import AddReviewForm from '../components/AddReviewForm'
         body: JSON.stringify(submission)
       }).then(response => {
           if (response.ok) {
-            return response
+            return response;
+            //browserHistory.push(`/`)
           } else {
             if (response.status == 401) {
-              // alert('You must be signed in to do that')
             } else {
             let errorMessage = `${response.status}`
             error = new Error(errorMessage)
@@ -99,10 +100,8 @@ import AddReviewForm from '../components/AddReviewForm'
           }
         }
       )
-      .then(response => response.json())
-      .then(body => {
-        alert("route review added!")
-      })
+      .then(response => response.json() )
+      .then( body => browserHistory.push( `/route_reviews/${body.route_review.route_review.id}`))
       .catch(error => console.error(`Error in fetch: ${error.message}`))
     }
 
@@ -132,7 +131,7 @@ import AddReviewForm from '../components/AddReviewForm'
         }
       }
 
-      console.log('payload', payload)
+      // console.log('payload', payload)
       this.addNewRouteReview(payload)
       //clear for next
       this.setState({

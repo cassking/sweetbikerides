@@ -10,7 +10,7 @@ class IndexContainer extends Component {
     this.state = {
       allRouteReviews: [],
       currentPage: 1,
-      r_reviewsPerPage: 20,
+      r_reviewsPerPage: 5,
       signed_in: false,
       current_user:null
     }
@@ -42,13 +42,20 @@ class IndexContainer extends Component {
   }
 
   render() {
+    let RouteReviewsPerPage = this.state.r_reviewsPerPage
+    let lastIndex = this.state.currentPage * RouteReviewsPerPage
+    let firstIndex = lastIndex - RouteReviewsPerPage
+    let displayRouteReviews = this.state.allRouteReviews.slice(firstIndex, lastIndex)
+
+
     const { allRouteReviews, currentPage, r_reviewsPerPage } = this.state;
     console.log('allRouteReviews', allRouteReviews)
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(allRouteReviews.length / r_reviewsPerPage); i++) {
       pageNumbers.push(i);
     }
-    const r_reviews = allRouteReviews.map((rr, index) => {
+    const r_reviews = displayRouteReviews.map( (rr) => {
+    // const r_reviews = allRouteReviews.map((rr, index) => {
       return(
         <div>
         <IndexRouteReviewTile

@@ -58,7 +58,7 @@ class MapInFormContainer extends React.Component {
         map_start_lng_lat:  arrOrigin,
         map_end_lng_lat:    arrDestination
       });
-      console.log(arrOrigin, arrDestination)
+      // console.log(arrOrigin, arrDestination)
       this.props.handleStartCoordinatesChange(arrOrigin);
       this.props.handleEndCoordinatesChange(arrDestination);
   }
@@ -112,7 +112,7 @@ class MapInFormContainer extends React.Component {
               required
             />
           </div>
-          
+
             <label className="col-3">Ending Longitude/Latitude
           (the field is automatically populated by clicking on map at the end point)
         </label>
