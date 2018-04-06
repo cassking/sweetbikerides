@@ -145,7 +145,7 @@ footer  p {
 }
 .outer {
   position: relative;
-  top: -50px;
+  top: -30px;
 }
 .outer .middle .inner {
   max-width: 90%;
