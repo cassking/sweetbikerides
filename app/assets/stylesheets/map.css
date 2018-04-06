@@ -25,12 +25,18 @@ font-size: 12px;
 }
 .mapTile,.mapboxgl-map{
   margin: 0 auto;
+  width: 100%;
+  height: 100vh;
 }
 .map-holder, .map-info-holder {
+  display:inline-block;
+width: 100%;
+  vertical-align: top;
 padding: 5px;
   width: 100%;
 border: 1px solid #eee;
 }
+
 
 .add-review-form .add-review-container .mapboxgl-map {
   position: relative;
@@ -50,7 +56,17 @@ padding:5px;
 .mapbox-directions-step{
   font-size: 12px;
 }
+@media only screen and (min-width: 500px){
+  .map-holder{
+    width: 58%;
+  }
+  .map-info-holder{
+      width: 38%;
+  }
+
+}
   @media only screen and (min-width: 300px){
+
     .directions-control.directions-control{
         width:70%!important;
           max-width: 70%!important;

@@ -9,15 +9,15 @@ const IndexRouteReviewTile = (props) => {
 
         <div id="tilecontainer" className="route-review-tile">
             <div className="route-information">
-            <h3>  <Link to={`/route_reviews/${props.id}`}>{props.name}</Link></h3>
-              <ul className="route-details">
+            <h3>
+              <Link to={`/route_reviews/${props.id}`}>
+              <img className="avatar" src="/images/map-icon.png" alt="avatar" />
+              {props.name}
+              </Link>
+            </h3>
+            <ul className="route-details">
                 <li><span>Description:</span> {props.description}</li>
-                <li><span>Mileage:</span>{props.mileage}</li>
                 <li><span>Category:</span> {props.category}</li>
-              
-
-
-
               </ul>
             </div>
            </div>

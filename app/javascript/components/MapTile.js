@@ -5,13 +5,13 @@ import { geoData } from '../Constants';
 const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ"
 
 
-const style= "mapbox://styles/mapbox/streets-v10"
+const style= "mapbox://styles/cassking/cjfo37dix2c7b2rpox8oue0uf"
 const Map = ReactMapboxGl({
   accessToken
 });
 const containerStyle = {
-  height: '70vh',
-  width: '70vw'
+  // height: '70vh',
+  // width: '70vw'
 };
 
 const lineLayout = {
@@ -92,7 +92,7 @@ class MapTile extends React.Component {
         <Feature coordinates={this.state.mappedRoute}  />
       </Layer>
 </Map>
-<h4>Automatically generated map information:</h4>
+<h4>More information, if available:</h4>
 <ul className="route-details">
 <li><span>Mileage/distance:</span> {this.state.mileage} miles</li>
 <li><span>Start Address:</span> {this.state.start_location}</li>
