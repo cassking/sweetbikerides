@@ -26,33 +26,48 @@ u3 = User.create!(username: "ILoveBikes3",email: "u33@gmail.com", password: "pw1
 u4 = User.create!(username: "ILoveBikes4",email: "u44@gmail.com", password: "pw1234",
   bio: "my dad got me into racing cyclocross, in my spare time i run my own restaurant",
   location: "Philly, PA")
+u5 = User.create!(username: "ILoveBikes5",email: "u55@gmail.com", password: "pw1234",
+  bio: "I own altogether 4 bikes, road, track, mtn, cyclocross, hybrids, love cycling",
+  location: "Palmyra, PA")
+u6 = User.create!(username: "ILoveBikes6",email: "u88@gmail.com", password: "pw1234",
+  bio: "my dad got me into racing cyclocross, in my spare time i run my own restaurant",
+  location: "Philly, PA")
 
-rr1 = RouteReview.create!(user_id: u1.id, name: "Widow's Peak to Gravel Fountain", mileage: 68.7, coordinates: [],
+rr1 = RouteReview.create!(user_id: u1.id, name: "Widow's Peak to Gravel Fountain",
 description: "This is a wonderful route, full of long hard climbs and fun
 descents. It ends at Gravel Fountain.traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category: cat1.name, difficulty: "Rolling Hills",
 points_interest: "Wawa, The Railroad Cafe, The Wiss Park Lake",
-start_location: "North Philadelphia", end_location: "Center City by the Civic Park",
 map_start_lng_lat:[-75.36427490730534,39.99565738881529],
 map_end_lng_lat:[-75.17410435465882,39.9097239490477])
-rr2 = RouteReview.create!(user_id:u2.id, name: "The Madonnas valley ride", mileage: 90.6, coordinates: [],
+rr2 = RouteReview.create!(user_id:u2.id, name: "The Madonnas valley ride",
 description: "This nice onehills and hills traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat2.name, difficulty: "Very Hilly",
 points_interest: "7-Eleven for food stops, The Hillside Cafe, Bike Stop bike shop",
-start_location: "Wissahickon", end_location: "North Philly",
-map_start_lng_lat:[-75.36427490730534,39.99565738881529],
-map_end_lng_lat:[-75.17410435465882,39.9097239490477])
-rr3 = RouteReview.create!(user_id: u3.id, name: "The  loopdaloop ride", mileage: 120.6, coordinates: [],
+map_start_lng_lat:[-73.989,40.733],
+map_end_lng_lat:[-74,40.733])
+rr3 = RouteReview.create!(user_id: u3.id, name: "The  loopdaloop ride",
 description: "This is fun interesting, good stops traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat3.name, difficulty: "Rolling Hills",
 points_interest: "Wawa, Whole Foods on way, The Petts coffee shop, Rendassy bike shop",
-start_location: "Pennypack park", end_location: "Center City Philly",
-map_start_lng_lat:[-75.36427490730534,39.99565738881529],
-map_end_lng_lat:[-75.17410435465882,39.9097239490477])
-
-
-rr4 = RouteReview.create!(user_id: u3.id, name: "Fountain ride", mileage: 40.6, coordinates: [],
-  points_interest: "Wawa, 7-eleven on way, check out the entrance to Floral Gradens park",
+map_start_lng_lat:[-73.989,40.733],
+map_end_lng_lat:[-74,40.733])
+rr4 = RouteReview.create!(user_id: u3.id, name: "Fountain ride",
+points_interest: "Wawa, 7-eleven on way, check out the entrance to Floral Gradens park",
 description: "This is a hard grinder, 90 miles of gravel and hills traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat4.name, difficulty: "Rolling Hills",
 map_start_lng_lat:[-75.36427490730534,39.99565738881529],
 map_end_lng_lat:[-75.17410435465882,39.9097239490477])
+
+rr5 = RouteReview.create!(user_id: u4.id, name: "Wissypack to Glendale, by hills",
+description: "This is fun interesting, good stops traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat3.name, difficulty: "Rolling Hills",
+points_interest: "Wawa, Whole Foods on way, The Petts coffee shop, Rendassy bike shop",
+map_start_lng_lat:[-73.989,40.733],
+map_end_lng_lat:[-74,40.733])
+
+
+rr6 = RouteReview.create!(user_id: u5.id, name: "Bulldog Stattue to Suzy's Donuts in Glenside",
+description: "This is fun interesting, good stops traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat3.name, difficulty: "Rolling Hills",
+points_interest: "Wawa, Whole Foods on way, The Petts coffee shop, Rendassy bike shop",
+map_start_lng_lat:[-73.989,40.733],
+map_end_lng_lat:[-74,40.733])
+
 c1= Comment.create!(user_id:u1.id, route_review_id:rr4.id, body:"thanks for posting this, it was intense and fun")
 c2= Comment.create!(user_id:u2.id, route_review_id:rr4.id, body:"this was a cool ride. thank you")
 c3= Comment.create!(user_id:u3.id, route_review_id:rr4.id, body:"will be doing it next weekend!")
