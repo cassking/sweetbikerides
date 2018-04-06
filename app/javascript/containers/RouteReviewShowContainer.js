@@ -15,11 +15,35 @@ class RouteReviewShowContainer extends Component {
       user_id: null,
       comments: [],
       signed_in: false,
-      if_admin: false
+      if_admin: false,
+
     }
+
+    this.getLatLong = this.getLatLong.bind(this);
+    this.getRoute = this.getRoute.bind(this);
   }
 
-  componentDidMount() {
+  getLatLong() {
+    let start = `${this.state.route_review.map_start_latitude},${this.state.route_review.map_start_longitude}`;
+    let end = `${this.state.route_review.map_end_latitude},${this.state.route_review.map_end_longitude}`;
+    console.log(start);
+    console.log(end);
+
+    let routeAPI = `https://api.mapbox.com/directions/v5/mapbox/cycling/${start};${end}?geometries=geojson&access_token=pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ`
+    console.log(routeAPI);
+    fetch(routeAPI)
+    .then(response => {
+      let parsed = response.json()
+      return parsed
+    }).then(route_data => {
+        this.setState({
+          mappedRoute: route_data.routes[0].geometry.coordinates,
+          center:route_data.routes[0].geometry.coordinates[0]
+        })
+    })
+  }
+
+  getRoute() {
     let route_reviewId = this.props.params.id
     fetch(`/api/v1/route_reviews/${route_reviewId}`)
     .then(response => {
@@ -27,12 +51,18 @@ class RouteReviewShowContainer extends Component {
     }).then(data => {
       this.setState({
         route_review: data['route_review'],
-        comments: data['comments']
+        comments: data['comments'],
       })
+      this.getLatLong()
     })
   }
+
+
+  componentDidMount() {
+    this.getRoute()
+  }
+
   render() {
-    debugger
 
     return(
       <div className="main-wrapper">
@@ -57,28 +87,14 @@ class RouteReviewShowContainer extends Component {
           animated={true}
           userLocationVisible={true}
           showUserLocation={true}
-          coordinates={this.coordinates}
-          map_start_lng_lat={this.state.route_review.map_start_lng_lat}
-          map_end_lng_lat={this.state.route_review.map_end_lng_lat}
-          map_start_latitude={this.map_start_latitude}
-          map_start_longitude={this.map_start_longitude}
-          map_end_latitude={this.map_end_latitude}
-          map_end_longitude={this.map_end_longitude}
-
+          mappedRoute={this.state.mappedRoute}
+          center={this.state.center}
         />
 
       </div>
         <div className="route-review-show-comments">
           <hr />
-        <CommentsContainer
-          routeReviewId={this.state.route_review.id}
-          comments={this.state.route_review.comments}
-          signed_in={this.state.signed_in}
-          if_admin={this.state.if_admin}
-          current_user={this.current_user}
-          user_id={this.state.user_id}
 
-        />
       </div>
       </div>
     )
