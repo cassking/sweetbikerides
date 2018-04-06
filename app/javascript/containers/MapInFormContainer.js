@@ -112,6 +112,7 @@ class MapInFormContainer extends React.Component {
               required
             />
           </div>
+          
             <label className="col-3">Ending Longitude/Latitude
           (the field is automatically populated by clicking on map at the end point)
         </label>

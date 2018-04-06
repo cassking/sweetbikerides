@@ -39,6 +39,9 @@ const AddReviewForm = props => {
           />
             <h4>Add coordinates by clicking on A and B in the map to log the start and end coordinate points</h4>
             <p>Once your Route Review is created, total mileage, starting address and ending address will appear automatically on the Route Review page, if available for that particular route.</p>
+            <p><img  src="/images/geolocate-icon.png" alt="avatar" /> Clicking on the
+            geo-locate icon on map will find your present location</p>
+
             <MapInFormContainer
               handleStartCoordinatesChange={props.handleStartCoordinatesChange}
               handleEndCoordinatesChange={props.handleEndCoordinatesChange}
