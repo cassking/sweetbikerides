@@ -33,25 +33,26 @@ u6 = User.create!(username: "ILoveBikes6",email: "u88@gmail.com", password: "pw1
   bio: "my dad got me into racing cyclocross, in my spare time i run my own restaurant",
   location: "Philly, PA")
 
-rr1 = RouteReview.create!(user_id: u1.id, name: "Widows Tavern to Nazareth ",
-description: "This is a wonderful route, full of long hard climbs and fun
-descents. It ends at Gravel Fountain.traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category: cat1.name, difficulty: "Rolling Hills",
-points_interest: "Wawa, The Railroad Cafe, The Wiss Park Lake",
-map_start_lng_lat:[-75.60404646055088,40.56652017436113],
-map_end_lng_lat:[-75.36024556964276,40.76004871124371])
-rr2 = RouteReview.create!(user_id:u2.id, name: "The Madonnas valley ride",
-description: "This nice onehills and hills traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat2.name, difficulty: "Very Hilly",
+rr1 = RouteReview.create!(user_id: u1.id, name: "Center City Philadelphia to Bridgeport (Suzy's Donuts!) ",
+description: "This is a wonderful route, you get to Conshohocken via the  Bike Path, all the way.  You dont have to ride in traffic for the most part.
+ It ends at Grave also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category: cat1.name, difficulty: "Rolling Hills",
+points_interest: "Wawa, The Railroad Cafe, The Wiss Park Lake, porta potties on the bike path",
+map_start_lng_lat:[-75.1798453297215,39.96180091413521],
+map_end_lng_lat:[-75.32683351784408,40.10604375507933])
+
+rr2 = RouteReview.create!(user_id:u2.id, name: "Conshohocken to Oxford",
+description: "This nice one, hills and hills traversed a portion of the course: a nice climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat2.name, difficulty: "Very Hilly",
 points_interest: "7-Eleven for food stops, The Hillside Cafe, Bike Stop bike shop",
-map_start_lng_lat:[-80.5514,40.40969999999993],
-map_end_lng_lat:[-79.98812643845491,40.37928680368918])
+map_start_lng_lat:[-75.22302631303432,40.04429584009927],
+map_end_lng_lat:[-75.97048858432197,39.8132330850417])
 rr3 = RouteReview.create!(user_id: u3.id, name: "Warrington to Pennington",
-description: "This is fun interesting, good stops traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat3.name, difficulty: "Rolling Hills",
+description: "This is fun interesting, good stops traversed a portion of the course: a  nice climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat3.name, difficulty: "Rolling Hills",
 points_interest: "Wawa, Whole Foods on way, The Petts coffee shop, Rendassy bike shop",
 map_start_lng_lat:[-75.13409999999999,40.24929999999995],
 map_end_lng_lat:[-74,40.733])
 rr4 = RouteReview.create!(user_id: u3.id, name: "Fountain ride",
 points_interest: "Wawa, 7-eleven on way, check out the entrance to Floral Gradens park",
-description: "This is a hard grinder, 90 miles of gravel and hills traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat4.name, difficulty: "Rolling Hills",
+description: "This is a hard grinder, miles of gravel and hills traversed a portion of the course: a 15 mile climb to Bear Creek with nearly 5,000 feet of elevation gain – gorgeous, and grueling. But Tour de Fronds also offers alternate routes that aren’t as intense, with five options featuring pavement or gravel, hilly or flatter.", category:  cat4.name, difficulty: "Rolling Hills",
 map_start_lng_lat:[-75.36427490730534,39.99565738881529],
 map_end_lng_lat:[-74.77271783355167,40.344901558200604])
 
@@ -67,6 +68,7 @@ description: "This is fun interesting, good stops traversed a portion of the cou
 points_interest: "Wawa, Whole Foods on way, The Petts coffee shop, Rendassy bike shop",
 map_start_lng_lat:[-75.1902,40.693700000000035],
 map_end_lng_lat:[-75.30991368407763,40.66401377783268])
+
 
 c1= Comment.create!(user_id:u1.id, route_review_id:rr4.id, body:"thanks for posting this, it was intense and fun")
 c2= Comment.create!(user_id:u2.id, route_review_id:rr4.id, body:"this was a cool ride. thank you")

@@ -3,7 +3,7 @@ import ReactMapboxGl, {ScaleControl,ZoomControl,RotationControl,Layer,Feature } 
 const accessToken = "pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ";
 import mapboxgl from 'mapbox-gl'
 
-const style= "mapbox://styles/mapbox/outdoors-v10"
+const style= "mapbox://styles/cassking/cjfo37dix2c7b2rpox8oue0uf"
 
 const containerStyle = {
   height: '70vh',
@@ -71,7 +71,7 @@ class MapInFormContainer extends React.Component {
       };
       const map = new mapboxgl.Map({
         container: this.mapContainer,
-        style: 'mapbox://styles/mapbox/streets-v9',
+        style: 'mapbox://styles/cassking/cjfo37dix2c7b2rpox8oue0uf',
         center: center,
         zoom
       });
@@ -83,6 +83,8 @@ class MapInFormContainer extends React.Component {
       trackUserLocation: true
     }));
     map.addControl(new MapboxDirections({
+      profile: 'cycling',
+
       accessToken: accessToken
       }), 'top-left');
 

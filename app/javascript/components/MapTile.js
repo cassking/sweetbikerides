@@ -23,8 +23,6 @@ const linePaint = {
   'line-color': '#4790E5',
   'line-width': 12
 };
-//const mappedRoute = route.points.map( point => [point.lat, point.lng]);
-//const route2 = 'https://api.mapbox.com/directions/v5/mapbox/cycling/-84.518641,39.134270;-84.512023,39.102779?geometries=geojson&access_token=pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ'
 
 class MapTile extends React.Component {
   constructor(props) {
