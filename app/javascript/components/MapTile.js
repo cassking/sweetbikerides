@@ -38,7 +38,9 @@ class MapTile extends React.Component {
       mappedRoute:[],
       map_start_lng_lat:this.props.map_start_lng_lat,
       map_end_lng_lat:this.props.map_start_lng_lat,
-      mileage:0
+      mileage:0,
+      start_location:'',
+      end_location: ''
     }
     this.onRouteChange = this.onRouteChange.bind(this)
   }
@@ -61,17 +63,20 @@ class MapTile extends React.Component {
        return parsed
      })
      .then(route_data => {
-       // debugger
+     // debugger
+     let calculatedDistanceInMiles = route_data.routes[0].legs[0].distance*0.000621371192
       this.setState({
          mappedRoute: route_data.routes[0].geometry.coordinates,
          center:route_data.routes[0].geometry.coordinates[0],
-         mileage:route_data.routes[0].legs[0].distance
+         mileage:parseFloat(Math.round(calculatedDistanceInMiles * 100) / 100).toFixed(2),
+         start_location: route_data.waypoints[0].name,
+         end_location: route_data.waypoints[1].name
+
         })
       })
   }
 
 }
-
 
   render() {
     return (
@@ -87,7 +92,11 @@ class MapTile extends React.Component {
         <Feature coordinates={this.state.mappedRoute}  />
       </Layer>
 </Map>
-<h4>Mileage/distance: {this.state.mileage}</h4>
+<h5>Automatically generated map information:</h5>
+<p>Mileage/distance: {this.state.mileage} miles</p>
+<p>Start Address: {this.state.start_location}</p>
+<p>Ending Address: {this.state.end_location}</p>
+
 </div>
     );
   }
