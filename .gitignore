@@ -17,6 +17,7 @@
 /config/environments/development.rb
 /node_modules
 /yarn-error.log
+/app/data/*
 
 .byebug_history
 /public/packs
