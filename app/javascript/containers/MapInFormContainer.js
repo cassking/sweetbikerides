@@ -58,7 +58,6 @@ class MapInFormContainer extends React.Component {
         map_start_lng_lat:  arrOrigin,
         map_end_lng_lat:    arrDestination
       });
-      // console.log(arrOrigin, arrDestination)
       this.props.handleStartCoordinatesChange(arrOrigin);
       this.props.handleEndCoordinatesChange(arrDestination);
   }

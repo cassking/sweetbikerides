@@ -24,7 +24,6 @@ class IndexContainer extends Component {
       let parsed = response.json()
       return parsed
     }).then(route_reviews => {
-      console.log('signed in..> ',route_reviews)
 
       this.setState({
         allRouteReviews: route_reviews.route_reviews,
@@ -49,7 +48,6 @@ class IndexContainer extends Component {
 
 
     const { allRouteReviews, currentPage, r_reviewsPerPage } = this.state;
-    console.log('allRouteReviews', allRouteReviews)
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(allRouteReviews.length / r_reviewsPerPage); i++) {
       pageNumbers.push(i);

@@ -111,10 +111,8 @@ class CommentsContainer extends Component {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('data ',data)
       //in this app comment are brought in as props
         let updatedComments = this.props.comments;
-          console.log('data ',updatedComments)
           updatedComments.unshift(data['comment']['comment']['body'])
       this.setState({
        comments: updatedComments
