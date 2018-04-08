@@ -43,14 +43,14 @@ class CommentsContainer extends Component {
    })
    .then(response => response.json())
    .then(body => {
-     // console.log('COMMENT deleted', body)
      this.setState({
        //remember here we are pulling in and setting
        //signed in data in a separate function below
        //this onlupdates comments brought in as props
        comments: this.props.comments.pop(body['comment'])
-
      })
+     alert("You deleted your comment!")
+     this.props.getRoute()
    })
   }
   componentDidMount(){
@@ -119,6 +119,7 @@ class CommentsContainer extends Component {
       this.setState({
        comments: updatedComments
       })
+      alert("Your comment was posted!")
       this.props.getRoute()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
