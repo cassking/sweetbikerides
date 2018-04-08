@@ -11,12 +11,13 @@ const RouteReviewShow = (props) => {
       <h2>{props.name}</h2>
       <div className="map-holder">
         <MapTile
-            coordinates={props.coordinates}
+            mappedRoute={props.mappedRoute}
             center={props.center}
-            map_end_lng_lat={props.map_end_lng_lat}
-            map_start_lng_lat={props.map_start_lng_lat}
             mileage={props.mileage}
+            start_location={props.start_location}
+            end_location={props.end_location}
           />
+
         </div>
       <div className="map-info-holder">
         <ul className="route-details">
