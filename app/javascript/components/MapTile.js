@@ -27,6 +27,22 @@ const linePaint = {
 
 
 const MapTile = (props) => {
+  let instructions = props.instructions
+  let rideDirections = instructions.map( (each_maneuver_info) =>{
+    let convertedDist = each_maneuver_info.distance
+    let finalConvertedDIst = parseFloat(convertedDist*0.000621371192).toFixed(2)
+
+return (
+  <div>
+    <li><span>...</span></li>
+    <li><span>distance travelled in miles:</span> {finalConvertedDIst} </li>
+    <li><span>name of road/street:</span> {each_maneuver_info.name}</li>
+    <li><span>turn instruction:</span>{each_maneuver_info.maneuver.instruction}</li>
+  </div>
+
+  )
+
+})
     return (
       <div>
       <Map
@@ -41,10 +57,12 @@ const MapTile = (props) => {
       </Map>
       <h4>More information, if available:</h4>
        <ul className="route-details">
+        <li><span>SUMMARY OF ROUTE:</span> {props.summary}</li>
+
        <li><span>Mileage/distance:</span> {props.mileage} miles</li>
        <li><span>Start Address:</span> {props.start_location}</li>
        <li><span>Ending Address:</span> {props.end_location}</li>
-       {/* {rideDirections} */}
+       {rideDirections}
        </ul>
        </div>
 
