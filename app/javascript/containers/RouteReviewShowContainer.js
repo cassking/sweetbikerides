@@ -39,11 +39,10 @@ class RouteReviewShowContainer extends Component {
       let parsed = response.json()
       return parsed
     }).then(route_data => {
-      // console.log('route data', route_data.routes[0].legs[0].steps[0].maneuver)
+      console.log('route data', route_data.routes[0].legs[0].steps)
       let calculatedDistanceInMiles = route_data.routes[0].legs[0].distance*0.000621371192
       let maneuvers = route_data.routes[0].legs[0].steps[0].maneuver
       let finalDist = parseFloat(Math.round(calculatedDistanceInMiles * 100) / 100).toFixed(2)
-      // console.log(route_data.waypoints[0].name)
 
         this.setState({
           mappedRoute: route_data.routes[0].geometry.coordinates,

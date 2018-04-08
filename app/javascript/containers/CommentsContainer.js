@@ -49,7 +49,7 @@ class CommentsContainer extends Component {
        //this onlupdates comments brought in as props
        comments: this.props.comments.pop(body['comment'])
      })
-     alert("You deleted your comment!")
+     // alert("You deleted your comment!")
      this.props.getRoute()
    })
   }
@@ -119,7 +119,7 @@ class CommentsContainer extends Component {
       this.setState({
        comments: updatedComments
       })
-      alert("Your comment was posted!")
+      // alert("Your comment was posted!")
       this.props.getRoute()
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));

@@ -188,15 +188,13 @@ import AddReviewForm from '../components/AddReviewForm'
   }
 
   render() {
-    let errorDiv;
-    let errorItems;
+    let errorDiv, errorItems, addReviewForm;
     if (Object.keys(this.state.errors).length > 0) {
       errorItems = Object.values(this.state.errors).map(error => {
         return(<li key={error}>{error}</li>)
       })
       errorDiv = <div className="callout alert">{errorItems}</div>
     }
-    let addReviewForm;
     if (this.state.signed_in) {
     addReviewForm =
     <div className="form-elements">
