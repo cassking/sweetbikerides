@@ -4,6 +4,10 @@
 - Users can sign in and become Members; they can add a Route Review that includes all the information for other cyclists to comment on: terrain, weather at time of ride, points of interest, photos and video
 - Users who are members can add as many Route Reviews as they wish
 - The app uses the MapboxAPI , Mapbox GL, along with mapbox Directions API with WebGL <a href="https://www.mapbox.com/api-documentation/#directions">Mapbox API docs</a>
+
+## Demo
+Try it out here: <a href="https://sweetbikerides.herokuapp.com/">SweetBikeRides!</a>
+
 ## Technologies
 * Backend: Rails 5.1.5
 * Webpacker
