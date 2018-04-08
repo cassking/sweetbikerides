@@ -20,7 +20,8 @@ class RouteReviewShowContainer extends Component {
       start_location:'',
       end_location:'',
       map_start_lng_lat:[],
-      map_end_lng_lat:[]
+      map_end_lng_lat:[],
+      instructions:[]
 
 
     }
@@ -31,27 +32,26 @@ class RouteReviewShowContainer extends Component {
     let start = this.state.route_review.map_start_lng_lat;
     let end = this.state.route_review.map_end_lng_lat;
 
-    let routeAPI = `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?geometries=geojson&access_token=pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ`
+    let routeAPI = `https://api.mapbox.com/directions/v5/mapbox/cycling/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&&banner_instructions=true&geometries=geojson&access_token=pk.eyJ1IjoiY2Fzc2tpbmciLCJhIjoiY2plcnRzaDJiMDAxYzJ2bnZ0OGU3dnB3OSJ9.kUHTVfObT_1gNrIdQM6eIQ`
   console.log(routeAPI);
     fetch(routeAPI)
     .then(response => {
       let parsed = response.json()
       return parsed
     }).then(route_data => {
+      // console.log('route data', route_data.routes[0].legs[0].steps[0].maneuver)
       let calculatedDistanceInMiles = route_data.routes[0].legs[0].distance*0.000621371192
-
+      let maneuvers = route_data.routes[0].legs[0].steps[0].maneuver
       let finalDist = parseFloat(Math.round(calculatedDistanceInMiles * 100) / 100).toFixed(2)
-      console.log(route_data.waypoints[0].name)
+      // console.log(route_data.waypoints[0].name)
 
-      // mileage = parseFloat(Math.round(calculatedDistanceInMiles * 100) / 100).toFixed(2),
-      // start_location= route_data.waypoints[0].name,
-      // end_location= route_data.waypoints[1].name
         this.setState({
           mappedRoute: route_data.routes[0].geometry.coordinates,
           center:route_data.routes[0].geometry.coordinates[0],
           mileage:finalDist,
           start_location: route_data.waypoints[0].name,
-          end_location: route_data.waypoints[1].name
+          end_location: route_data.waypoints[1].name,
+
         })
     })
   }
@@ -102,7 +102,6 @@ class RouteReviewShowContainer extends Component {
           center={this.state.center}
           start_location={this.state.start_location}
           end_location={this.state.end_location}
-
 
         />
 

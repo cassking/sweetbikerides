@@ -102,6 +102,7 @@ import AddReviewForm from '../components/AddReviewForm'
       )
       .then(response => response.json() )
       .then( body => browserHistory.push( `/route_reviews/${body.route_review.route_review.id}`))
+      console.log(body.route_review)
       .catch(error => console.error(`Error in fetch: ${error.message}`))
     }
 
@@ -110,10 +111,10 @@ import AddReviewForm from '../components/AddReviewForm'
     if (
       this.validateSignedIn(this.state.signed_in)&&
       this.validateField(this.state.category)&&
-       this.validateField(this.state.name) &&
-       this.validateField(this.state.description) &&
-       this.validateField(this.state.map_start_lng_lat) &&
-     this.validateField(this.state.map_end_lng_lat)
+      this.validateField(this.state.name) &&
+      this.validateField(this.state.description) &&
+      this.validateField(this.state.map_start_lng_lat) &&
+      this.validateField(this.state.map_end_lng_lat)
 
     ) {
       let payload = {
@@ -131,7 +132,7 @@ import AddReviewForm from '../components/AddReviewForm'
         }
       }
 
-      // console.log('payload', payload)
+      //console.log('payload', payload)
       this.addNewRouteReview(payload)
       //clear for next
       this.setState({
