@@ -16,11 +16,17 @@ const RouteReviewShow = (props) => {
             mileage={props.mileage}
             start_location={props.start_location}
             end_location={props.end_location}
+            instructions={props.instructions}
+            summary={props.summary}
+            shown={props.shown}
+            toggleShowHide={props.toggleShowHide}
           />
 
         </div>
       <div className="map-info-holder">
-        <ul className="route-details">
+        <ul
+
+          className="route-details">
         <li><span>Name:</span> {props.name}</li>
         <li><span>Description</span> {props.description}</li>
         <li><span>Category:</span> {props.category} | <span>Difficulty:</span> {props.difficulty}</li>
