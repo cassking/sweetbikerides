@@ -22,13 +22,21 @@ class RouteReviewShowContainer extends Component {
       map_start_lng_lat:[],
       map_end_lng_lat:[],
       instructions:[],
-      summary:''
+      summary:'',
+      shown:false
 
 
     }
     this.getLatLong = this.getLatLong.bind(this);
     this.getRoute = this.getRoute.bind(this);
+    this.toggleShowHide= this.toggleShowHide.bind(this)
   }
+  toggleShowHide() {
+    this.setState({
+      shown: !this.state.shown
+    })
+  }
+
   getLatLong() {
     let start = this.state.route_review.map_start_lng_lat;
     let end = this.state.route_review.map_end_lng_lat;
@@ -40,7 +48,7 @@ class RouteReviewShowContainer extends Component {
       let parsed = response.json()
       return parsed
     }).then(route_data => {
-      console.log('route data', route_data.routes[0].legs[0])
+      console.log('route data', route_data.routes[0])
       let steps = route_data.routes[0].legs[0].steps
       let calculatedDistanceInMiles = route_data.routes[0].legs[0].distance*0.000621371192
       let maneuvers = route_data.routes[0].legs[0].steps[0].maneuver
@@ -76,6 +84,7 @@ class RouteReviewShowContainer extends Component {
     }
 
   render() {
+
     return(
       <div className="main-wrapper">
         <div className="route-review-show">
@@ -106,6 +115,8 @@ class RouteReviewShowContainer extends Component {
           end_location={this.state.end_location}
           instructions ={this.state.instructions}
           summary={this.state.summary}
+          shown={this.state.shown}
+          toggleShowHide={this.toggleShowHide}
         />
 
       </div>

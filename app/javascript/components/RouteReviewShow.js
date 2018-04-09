@@ -18,13 +18,14 @@ const RouteReviewShow = (props) => {
             end_location={props.end_location}
             instructions={props.instructions}
             summary={props.summary}
+            shown={props.shown}
+            toggleShowHide={props.toggleShowHide}
           />
 
         </div>
       <div className="map-info-holder">
         <ul
-          // key={props.route_review.id}
-          // id={props.route_review.id}
+
           className="route-details">
         <li><span>Name:</span> {props.name}</li>
         <li><span>Description</span> {props.description}</li>
